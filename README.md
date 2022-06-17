@@ -1,179 +1,129 @@
-<p align="center">
- <img width="70%" src="docs/source/\_static/img/parlai.png" />
-</p>
 
-<p align="center">
-   <a href="https://github.com/facebookresearch/ParlAI/blob/main/LICENSE">
-    <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="CircleCI" />
-  </a>
-   <a href="https://pypi.org/project/parlai/">
-    <img src="https://img.shields.io/pypi/v/parlai?color=blue&label=release" alt="CircleCI" />
-  </a>
-    <a href="https://circleci.com/gh/facebookresearch/ParlAI/tree/main">
-    <img src="https://img.shields.io/circleci/build/github/facebookresearch/ParlAI/main" alt="Coverage" />
-  </a>
-    <a href="https://codecov.io/gh/facebookresearch/ParlAI">
-    <img src="https://img.shields.io/codecov/c/github/facebookresearch/ParlAI" alt="GitHub contributors" />
-  </a>
-    <a href="https://img.shields.io/github/contributors/facebookresearch/ParlAI">
-    <img src="https://img.shields.io/github/contributors/facebookresearch/ParlAI"/>
-  </a>
-    <a href="https://twitter.com/parlai_parley">
-    <img src="https://img.shields.io/twitter/follow/parlai_parley?label=Twitter&style=social" alt="Twitter" />
-  </a>
- </p>
- 
+Multilingual Knowledge-grounded Dialogue Systems
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 
-[ParlAI](http://parl.ai) (pronounced “par-lay”) is a python framework for
-sharing, training and testing dialogue models, from open-domain chitchat, to
-task-oriented dialogue, to visual question answering.
+The implementation of the master's thesis work [Can Wizards be Polyglots: Towards a Multilingual Knowledge-grounded Dialogue System](http://urn.kb.se/resolve?urn=urn:nbn:se:uu:diva-477541). 
 
-Its goal is to provide researchers:
+This thesis invesitgated if and how can we develop a multilingual knowledge-ground dialogue system without in-task data by leveraging various transfer learning techniques, given the lack of multilingual non-task-oriented data. The goal was to explore if cross-task transfer (multilingual question answering to dialogue) or cross-lingual transfer (English to multilingual) could be useful for a non-task-oriented, knowledge-aware dialogie model in a multilingual setting. I focused on five typologically diverse languages, namely Arabic, Bengali, Finnish, Japanese, and Korean, of which well-performing models could generalize to the languages that are part of the language family as the target languages, hence widening the accessibility of the systems to speakers of various languages.
 
-- **100+ popular datasets available all in one place, with the same API**, among them [PersonaChat](https://arxiv.org/abs/1801.07243), [DailyDialog](https://arxiv.org/abs/1710.03957), [Wizard of Wikipedia](https://openreview.net/forum?id=r1l73iRqKm), [Empathetic Dialogues](https://arxiv.org/abs/1811.00207), [SQuAD](https://rajpurkar.github.io/SQuAD-explorer/), [MS MARCO](http://www.msmarco.org/), [QuAC](https://www.aclweb.org/anthology/D18-1241), [HotpotQA](https://hotpotqa.github.io/), [QACNN & QADailyMail](https://arxiv.org/abs/1506.03340), [CBT](https://arxiv.org/abs/1511.02301), [BookTest](https://arxiv.org/abs/1610.00956), [bAbI Dialogue tasks](https://arxiv.org/abs/1605.07683), [Ubuntu Dialogue](https://arxiv.org/abs/1506.08909), [OpenSubtitles](http://opus.lingfil.uu.se/OpenSubtitles.php),  [Image Chat](https://arxiv.org/abs/1811.00945), [VQA](http://visualqa.org/), [VisDial](https://arxiv.org/abs/1611.08669) and [CLEVR](http://cs.stanford.edu/people/jcjohns/clevr/). See the complete list [here](https://github.com/facebookresearch/ParlAI/blob/main/parlai/tasks/task_list.py).
-- a wide set of [**reference models**](https://parl.ai/docs/agents_list.html) -- from retrieval baselines to Transformers.
-- a large [zoo of **pretrained models**](https://parl.ai/docs/zoo.html) ready to use off-the-shelf
-- seamless **integration of [Amazon Mechanical Turk](https://www.mturk.com/mturk/welcome)** for data collection and human evaluation
-- **integration with [Facebook Messenger](https://parl.ai/docs/tutorial_chat_service.html)** to connect agents with humans in a chat interface
-- a large range of **helpers to create your own agents** and train on several tasks with **multitasking**
-- **multimodality**, some tasks use text and images
+The script provided in this repo includes the necessary steps to reproduce the result presented in the master's thesis. Two approaches were proposed and implemented:
 
+1. Multilingual Retrieval-Augmented Dialogue Model (xRAD)
+2. Multilingual Generative Dialogue Model (xGenD)
 
-ParlAI is described in the following paper:
-[“ParlAI: A Dialog Research Software Platform", arXiv:1705.06476](https://arxiv.org/abs/1705.06476)
-or see these [more up-to-date slides](https://drive.google.com/file/d/1JfUW4AVrjSp8X8Fp0_rTTRoLxUfW0aUm/view?usp=sharing).
+xRAD was adopted from a pre-trained multilingual question answering (QA) system ([CORA, Asai et al., 2021](https://arxiv.org/abs/2107.11976)) and comprises a multilingual neural retriever (mDPR) and a multilingual generation model (mGEN) with modification in the model arhitecture to add in dialogue context, followed by multi-task training to perform transfer learning.
 
-Follow us on [Twitter](https://twitter.com/parlai_parley) and check out our [Release
-notes](https://github.com/facebookresearch/ParlAI/releases) to see the latest
-information about new features & updates, and the website
-[http://parl.ai](http://parl.ai) for further docs. For an archived list of updates,
-check out [NEWS.md](https://github.com/facebookresearch/ParlAI/blob/main/NEWS.md).
+xGenD took advantage of an existing English dialogue model (BlenderBot 400M Distilled) and performed a zero-shot cross-lingual transfer by training sequentially on English dialogue and multilingual QA datasets.
 
-<p align="center"><img width="90%" src="https://raw.githubusercontent.com/facebookresearch/ParlAI/main/docs/source/_static/img/parlai_example.png" /></p>
+## Contents
+1. [Data and Pre-trained Models](https://github.com/evelynkyl/xRAD_multilingual_dialog_systems#Data-and-Pre-trained-Models)
+2. [Pre-requisite and Installation](https://github.com/evelynkyl/xRAD_multilingual_dialog_systems#Pre-requisite-and-Installation)
+3. [Training](https://github.com/evelynkyl/xRAD_multilingual_dialog_systems#Training)
+4. [Evaluation](https://github.com/evelynkyl/xRAD_multilingual_dialog_systems#Evaluation)
+5. [Citations and Contact](https://github.com/evelynkyl/xRAD_multilingual_dialog_systems#Citations-and-Contact)
 
-## Interactive Tutorial
+## Data and Pre-trained Models
+1. Download the datasets
+Unzip the dataset and then place it in a suitable location
 
-For those who want to start with ParlAI now, you can try our [Colab Tutorial](https://colab.research.google.com/drive/1bRMvN0lGXaTF5fuTidgvlAl-Lb41F7AD#scrollTo=KtVz5dCUmFkN).
-
-## Installing ParlAI
-
-ParlAI currently requires Python3.8+ and [Pytorch](https://pytorch.org) 1.6 or higher.
-Dependencies of the core modules are listed in [`requirements.txt`](https://github.com/facebookresearch/ParlAI/blob/main/requirements.txt). Some
-models included (in [`parlai/agents`](https://github.com/facebookresearch/ParlAI/tree/main/parlai/agents)) have additional requirements.
-We *strongly* recommend you install ParlAI in a [venv](https://docs.python.org/3/library/venv.html) or [conda](https://www.anaconda.com/) environment.
-
-We do not support Windows at this time, but many users [report success on Windows using Python 3.8](https://github.com/facebookresearch/ParlAI/issues/3989) and issues with Python 3.9. We are happy to accept patches that improve Windows support.
-
-**Standard Installation**
-
-If you want to use ParlAI without modifications, you can install it with:
-
+### Data
+1. mGEN training data
 ```bash
-pip install parlai
+mkdir data
+cd data
+wget https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_dev_full_v1_1.jsonl
+wget https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_test_full_q_only_v1_1.jsonl
+cd ..
+```
+2. LFQA data
+```bash
+wget https://huggingface.co/datasets/vblagoje/lfqa/blob/main/train.json
+wget https://huggingface.co/datasets/vblagoje/lfqa/blob/main/validation.json
+wget https://huggingface.co/datasets/vblagoje/lfqa/blob/main/test.json
 ```
 
-**Development Installation**
-
-Many users will want to modify some parts of ParlAI. To set up a development
-environment, run the following commands to clone the repository and install
-ParlAI:
-
+### Trained models
 ```bash
-git clone https://github.com/facebookresearch/ParlAI.git ~/ParlAI
-cd ~/ParlAI; python setup.py develop
+mkdir models
+wget https://nlp.cs.washington.edu/xorqa/cora/models/all_w100.tsv
+wget https://nlp.cs.washington.edu/xorqa/cora/models/mGEN_model.zip
+wget https://nlp.cs.washington.edu/xorqa/cora/models/mDPR_biencoder_best.cpt
+```
+### mDPR dense embeddings to create a FAISS index
+```
+unzip mGEN_model.zip
+mkdir embeddings
+cd embeddings
+for i in 0 1 2 3 4 5 6 7;
+do 
+  wget https://nlp.cs.washington.edu/xorqa/cora/models/wikipedia_split/wiki_emb_en_$i 
+done
+for i in 0 1 2 3 4 5 6 7;
+do 
+  wget https://nlp.cs.washington.edu/xorqa/cora/models/wikipedia_split/wiki_emb_others_$i  
+done
+cd ../..
 ```
 
-All needed data will be downloaded to `~/ParlAI/data`. If you need to clear out
-the space used by these files, you can safely delete these directories and any
-files needed will be downloaded again.
 
-## Documentation
+## Pre-requisite and Installation
+To run the script, 
 
- - [Quick Start](https://parl.ai/docs/tutorial_quick.html)
- - [Basics: world, agents, teachers, action and observations](https://parl.ai/docs/tutorial_basic.html)
- - [Creating a new dataset/task](http://parl.ai/docs/tutorial_task.html)
- - [List of available tasks/datasets](https://parl.ai/docs/tasks.html)
- - [Creating a seq2seq agent](https://parl.ai/docs/tutorial_torch_generator_agent.html)
- - [List of available agents](https://parl.ai/docs/agents_list.html)
- - [Model zoo (list pretrained models)](https://parl.ai/docs/zoo.html)
- - [Running crowdsourcing tasks](http://parl.ai/docs/tutorial_crowdsourcing.html)
- - [Plug into Facebook Messenger](https://parl.ai/docs/tutorial_chat_service.html)
+### Technical requirements
+Please note that running the script of this project is quite computationally expensive. You should have at least 256GB of RAM alloocated for pre-training and a CUDA enabled GPU with 96GB of memory.
 
+For the training of the xGenD model, 64GB of RAM and a smaller GPU (24GB of memory) should be sufficient.
+
+### Dependencies
+The following applications and libraries needs to be installed in order to run the application.
+
+1. Miniconda or Anaconda with Python3
+2. [ParlAI](http://parl.ai)
+3. [PyTorch](https://pytorch.org/get-started/locally/)
+4. [Mephisto](https://github.com/facebookresearch/Mephisto) for human evaluation
+5. CUDA enabled GPU
+
+### Installation
+1. Download this repo
+```bash
+git clone https://github.com/evelynkyl/xRAD_multilingual_dialog_systems.git
+```
+2. Download the pre-trained model
+
+
+## Baseline
+In our paper, we have tested several baselines such as Translate-test or multilingual baselines. The codes for machine translations or BM 25-based retrievers are at baselines. To run the baselines, you may need to download code and mdoels from the XOR QA repository.
 
 ## Examples
-
-A large set of scripts can be found in [`parlai/scripts`](https://github.com/facebookresearch/ParlAI/tree/main/parlai/scripts). Here are a few of them.
-Note: If any of these examples fail, check the [installation section](#installing-parlai) to see if you have missed something.
-
-Display 10 random examples from the SQuAD task
+Evaluate a model on the test set of the Blended Skill Talk task:
 ```bash
-parlai display_data -t squad
+parlai eval_model -m ir_baseline -t blendedskilltalk -dt test
 ```
-
-Evaluate an IR baseline model on the validation set of the Personachat task:
-```bash
-parlai eval_model -m ir_baseline -t personachat -dt valid
-```
-
 Train a single layer transformer on PersonaChat (requires pytorch and torchtext).
 Detail: embedding size 300, 4 attention heads,  2 epochs using batchsize 64, word vectors are initialized with fasttext and the other elements of the batch are used as negative during training.
 ```bash
 parlai train_model -t personachat -m transformer/ranker -mf /tmp/model_tr6 --n-layers 1 --embedding-size 300 --ffn-size 600 --n-heads 4 --num-epochs 2 -veps 0.25 -bs 64 -lr 0.001 --dropout 0.1 --embedding-type fasttext_cc --candidates batch
 ```
 
-## Code Organization
-
-The code is set up into several main directories:
-
-- [**core**](https://github.com/facebookresearch/ParlAI/tree/main/parlai/core): contains the primary code for the framework
-- [**agents**](https://github.com/facebookresearch/ParlAI/tree/main/parlai/agents): contains agents which can interact with the different tasks (e.g. machine learning models)
-- [**scripts**](https://github.com/facebookresearch/ParlAI/tree/main/parlai/scripts): contains a number of useful scripts, like training, evaluating, interactive chatting, ...
-- [**tasks**](https://github.com/facebookresearch/ParlAI/tree/main/parlai/tasks): contains code for the different tasks available from within ParlAI
-- [**mturk**](https://github.com/facebookresearch/ParlAI/tree/main/parlai/mturk): contains code for setting up Mechanical Turk, as well as sample MTurk tasks
-- [**messenger**](https://github.com/facebookresearch/ParlAI/tree/main/parlai/chat_service/services/messenger): contains code for interfacing with Facebook Messenger
-- [**utils**](https://github.com/facebookresearch/ParlAI/tree/main/parlai/utils): contains a wide number of frequently used utility methods
-- [**crowdsourcing**](https://github.com/facebookresearch/ParlAI/tree/main/parlai/crowdsourcing): contains code for running crowdsourcing tasks, such as on Amazon Mechanical Turk
-- [**chat_service**](https://github.com/facebookresearch/ParlAI/tree/main/parlai/chat_service/services/messenger): contains code for interfacing with services such as Facebook Messenger
-- [**zoo**](https://github.com/facebookresearch/ParlAI/tree/main/parlai/zoo): contains code to directly download and use pretrained models from our model zoo
-
-## Support
-If you have any questions, bug reports or feature requests, please don't hesitate to post on our [Github Issues page](https://github.com/facebookresearch/ParlAI/issues).
-You may also be interested in checking out our [FAQ](https://parl.ai/docs/faq.html) and
-our [Tips n Tricks](https://parl.ai/docs/tutorial_tipsntricks.html).
-
-Please remember to follow our [Code of Conduct](https://github.com/facebookresearch/ParlAI/blob/main/CODE_OF_CONDUCT.md).
-
-## Contributing
-We welcome PRs from the community!
-
-You can find information about contributing to ParlAI in our
-[Contributing](https://github.com/facebookresearch/ParlAI/blob/main/CONTRIBUTING.md)
-document.
+## Acknowledgment 
+I am grateful to the authors of CORA and DPR for providing reproducible training scripts and ParlAI for open-sourcing their models and frameworks. I would like to thank my supervisor at Johan Sjons at Uppsala University for his invaluable feedback and insights. I would also like to thank the volunteering participants for providing assessments of the dialogue systems and their invaluable feedback, which is immensely helpful for analyzing and interpreting the performance and quality of the conversational AI systems.
 
 
-## The Team
-ParlAI is currently maintained by Moya Chen, Emily Dinan, Dexter Ju, Mojtaba
-Komeili, Spencer Poff, Pratik Ringshia, Stephen Roller, Kurt Shuster,
-Eric Michael Smith, Megan Ung, Jack Urbanek, Jason Weston, Mary Williamson,
-and Jing Xu. Stephen Roller is the current Tech Lead.
+## Citation and Contact
+For more details of the thesis, you can read the thesis [here](http://urn.kb.se/resolve?urn=urn:nbn:se:uu:diva-477541).
 
-Former major contributors and maintainers include Alexander H. Miller, Margaret
-Li, Will Feng, Adam Fisch, Jiasen Lu, Antoine Bordes, Devi Parikh, Dhruv Batra,
-Filipe de Avila Belbute Peres, Chao Pan, and Vedant Puri.
-
-## Citation
-
-Please cite the [arXiv paper](https://arxiv.org/abs/1705.06476) if you use ParlAI in your work:
+If you find this codebase useful or use in your work, please cite the thesis.
 
 ```
-@article{miller2017parlai,
-  title={ParlAI: A Dialog Research Software Platform},
-  author={{Miller}, A.~H. and {Feng}, W. and {Fisch}, A. and {Lu}, J. and {Batra}, D. and {Bordes}, A. and {Parikh}, D. and {Weston}, J.},
-  journal={arXiv preprint arXiv:{1705.06476}},
-  year={2017}
+@mastersthesis{Liu1671559,
+   author = {Liu, Evelyn Kai Yan},
+   institution = {Uppsala University, Department of Linguistics and Philology},
+   pages = {125},
+   school = {Uppsala University, Department of Linguistics and Philology},
+   title = {Can Wizards be Polyglots: Towards a Multilingual Knowledge-grounded Dialogue System },
+   keywords = {Knowledge-grounded dialogue, Dialogue systems, Generative question answering, Multilingual question answering, Multilingual dialogue systems, Transfer learning, Multi-task learning, Sequential training, Conversational AI, Natural Language Processing (NLP), Deep learning, Machine learning},
+   year = {2022}
 }
 ```
 
-## License
-ParlAI is MIT licensed. See the **[LICENSE](https://github.com/facebookresearch/ParlAI/blob/main/LICENSE)** file for details.
+If you have any questions regarding the code or the thesis, please don't hesitate to post on the issue page of this repo or contact [evelyn.kyliu.uu@gmail.com](mailto:evelyn.kyliu.uu@gmail.com).
