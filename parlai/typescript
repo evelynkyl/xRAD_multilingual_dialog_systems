@@ -1,0 +1,347 @@
+Script started on Fri 11 Mar 2022 04:08:03 PM CET
+ _   _ ____  ____  __  __    _    __  __
+| | | |  _ \|  _ \|  \/  |  / \   \ \/ /   | System:    rackham3
+| | | | |_) | |_) | |\/| | / _ \   \  /    | User:      evelyn
+| |_| |  __/|  __/| |  | |/ ___ \  /  \    | 
+ \___/|_|   |_|   |_|  |_/_/   \_\/_/\_\   | 
+
+###############################################################################
+
+        User Guides: http://www.uppmax.uu.se/support/user-guides
+        FAQ: http://www.uppmax.uu.se/support/faq
+
+        Write to support@uppmax.uu.se, if you have questions or comments.
+
+
+Active notices for rackham:
+[37;41m
+  Crex is slow
+  http://status.uppmax.uu.se/2022-03-03/crex-is-slow/
+
+
+  Please clean your project directory
+  http://status.uppmax.uu.se/2021-12-20/crex-no-space-left-on-device/
+[0m
+]0;evelyn@rackham3:~/parley/parlai[?1034h(base) [evelyn@rackham3 parlai]$ cd scripts
+]0;evelyn@rackham3:~/parley/parlai/scripts(base) [evelyn@rackham3 scripts]$ cd [K[K[Kcd scripts..[Kvi build.py [1@agents[C[C[C[C[1Pbuild[C[C[C[C[1@agents[C[C[C[C[6Pcd lfqatasks[3P..python3 display_data.py -t lfqa
+Traceback (most recent call last):
+  File "display_data.py", line 20, in <module>
+    from parlai.core.params import ParlaiParser
+ModuleNotFoundError: No module named 'parlai'
+]0;evelyn@rackham3:~/parley/parlai/scripts(base) [evelyn@rackham3 scripts]$ cd ..
+]0;evelyn@rackham3:~/parley/parlai(base) [evelyn@rackham3 parlai]$ cd scripts
+]0;evelyn@rackham3:~/parley/parlai/scripts(base) [evelyn@rackham3 scripts]$ cd scripts..[K[K[K[K[K[Kconda acr[Ktivate parl-env
+]0;evelyn@rackham3:~/parley/parlai/scripts(parl-env) [evelyn@rackham3 scripts]$ conda activate parl-env[13Pd scripts..[Kpython3 display_data.py -t lfqacd scripts[Kpython3 display_data.py -t lfqa
+16:08:46 | Opt:
+16:08:46 |     allow_missing_init_opts: False
+16:08:46 |     batchsize: 1
+16:08:46 |     datapath: /domus/h1/evelyn/parley/data
+16:08:46 |     datatype: train:ordered
+16:08:46 |     dict_class: None
+16:08:46 |     display_add_fields: 
+16:08:46 |     download_path: None
+16:08:46 |     dynamic_batching: None
+16:08:46 |     hide_labels: False
+16:08:46 |     ignore_agent_reply: True
+16:08:46 |     image_cropsize: 224
+16:08:46 |     image_mode: raw
+16:08:46 |     image_size: 256
+16:08:46 |     init_model: None
+16:08:46 |     init_opt: None
+16:08:46 |     is_debug: False
+16:08:46 |     knowledge: True
+16:08:46 |     loglevel: info
+16:08:46 |     max_display_len: 1000
+16:08:46 |     model: None
+16:08:46 |     model_file: None
+16:08:46 |     multitask_weights: [1]
+16:08:46 |     mutators: None
+16:08:46 |     num_examples: 10
+16:08:46 |     override: {}
+16:08:46 |     parlai_home: /domus/h1/evelyn/parley
+16:08:46 |     starttime: Mar11_16-08
+16:08:46 |     task: lfqa
+16:08:46 |     verbose: False
+16:08:46 | Current ParlAI commit: 411d74fb54d4218d5f5a496ade79bfb4dcf6910e
+16:08:46 | Current internal commit: 411d74fb54d4218d5f5a496ade79bfb4dcf6910e
+16:08:46 | Current fb commit: 411d74fb54d4218d5f5a496ade79bfb4dcf6910e
+16:08:46 | creating task(s): lfqa
+16:08:59 | [33mparlai.tasks.lfqa.agents.DefaultTeacher' is outputting dicts instead of messages. If this is a teacher that is part of ParlAI, please file an issue on GitHub. If it is your own teacher, please return a Message object instead.[0m
+[1;31m- - - NEW EPISODE: lfqa - - -[0;0m
+[0mwhat's the difference between a forest and a wood?[0;0m
+   [1;94mThey're used interchangeably a lot. You'll get different answers from different resources, but the general consensus seems to be that woods are smaller than forests.
+
+ >  A wood is an area covered in trees, larger than a grove or a copse. A forest is also an area covered in trees, but it is larger than a wood
+
+ >  The U.S. National Vegetation Classification system differentiates them according to their densities: 25 to 60 percent of a a wood is covered by tree canopies, while 60 to 100 percent of a forest is canopied.[0;0m
+[1;31m- - - NEW EPISODE: lfqa - - -[0;0m
+[0mAre there any good source material on the Warsaw Ghetto to be had online?[0;0m
+   [1;94mMany of the relevant primary sources wont contain the those specific details in an aggregated way. There are a few great examples of diaries and reports coming from the Warsaw Ghetto. The statistics you are looking for would likely come from secondary sources.
+
+One great example is the Stroop Report. This is written by a commander (Stroop) and it documents the suppression of the uprising. I've included a link  to the National Archive where you can get the the full report [here](_URL_1_). This document was used in the Nuremberg Trials.
+
+I would recommend you check out the [Yad Vashem site](_URL_2_). That is the Holocaust Museum in Israel. They have spent a lot of time collecting primary sources, photos, personal accounts etc, about the Holocaust of the Jews (Shoah). I've linked to the overview of the Warsaw Ghetto, but check out the digital collection at the top.
+
+A last little tip is diaries of the time. I don't know where you're located, or which libraries you have access to but here are a few WorldCat records for some notable ones: [The Warsaw diary of Adam Czerniakow](_URL_0_) and [Scroll of agony, the Warsaw diary of Chaim A. Kaplan](_URL_3_).
+
+Hope this help.
+
+Source: I'm an academic reference librarian and Jewish history specialist[0;0m
+[1;31m- - - NEW EPISODE: lfqa - - -[0;0m
+[0mwe do we instinctively grab a part of our body after it is hurt?[0;0m
+   [1;94mA) instinct. To protect it from further damage (if the damaging agent is ongoing) or to prevent bleeding and such.
+
+B) pain. Our brain knows that pressure sensation blocks pain sensation from experience. So we reflexively grab the injury site because it alleviates the pain.
+
+Edit: English and clarity[0;0m
+[1;31m- - - NEW EPISODE: lfqa - - -[0;0m
+[0mFollowing the passing of the Thirteenth Amendment, were there any cases of slave-owners attempting to continue the practice illegally?[0;0m
+   [1;94mAll across the South during the years following the civil war, a series of "Black codes" were passed into law. Their purpose was to effectively re-enslave the freed slaves by justifying their forced labor by labeling them vagrants, essentially making unemployment illegal and thereby allowing a state to force a former slave to work by arresting them and then using them as convict labor.
+
+Sometimes, the black codes were simply pre-civil war slave laws with the word "slave" replaced with "negro."[0;0m
+[1;31m- - - NEW EPISODE: lfqa - - -[0;0m
+[0mIn medieval and pre-modern times, political entities made marriage pacts between heirs in order to secure peace. Often times, this didn't last for more than 20 years, if not even less. Why did they even bother?[0;0m
+   [1;94mTwenty years of peace is much better than no peace at all.  Twenty years is enough time for a generation of young men to forgo military service, time to build infrastructure, time to consolidate power, and time grow a treasury.
+
+There are also plenty of examples of peaces that last longer than twenty years, or even result in permanent peace and consolidation.  The nation of Spain was formed from [the union of the Kingdom of Castile and the Kingdom of Aragon](_URL_0_), a union that was set in motion when Isabella of Castile, the future queen, married Ferdinand the Catholic, a future king of Aragon.  Their grandson Charles V and great grandson Phillip II would later become kings of a united Spain.  James the VI of Scotland similarly oversaw the personal union of England and Scotland when he inherited the crown of England, becoming James I, in 1603.  England and Scotland would later formally join together to become the Kingdom of Great Britain in 1707.
+
+Your question also implies that it is particularly unusual for a peace treaty to last less than twenty years.  There are numerous examples of more modern treaties that did not maintain peace for much longer than twenty years.  There were only twenty-one years between the World Wars (1918 to 1939) and only twelve years between the Gulf War (ended 1991) and the Iraq War (began 2003).
+
+I can try to include better sources if asked, but I don't think anything I've said here is controversial.  [0;0m
+[1;31m- - - NEW EPISODE: lfqa - - -[0;0m
+[0mWhat happened to German and Italian volunteers in the International Brigades of the Spanish Civil War after they were disbanded in 1938?[0;0m
+   [1;94mI gave a relatively brief answer to this [here](_URL_0_), focusing more on the Germans (for whom I had a relevant source handy). If I get the chance later today, I'll try and expand on it![0;0m
+[1;31m- - - NEW EPISODE: lfqa - - -[0;0m
+[0mWhat (if anything) did Native Americans think lay beyond the Pacific and Atlantic oceans?[0;0m
+   [1;94mThe desert people of the American Southwest generally understood the concept of oceans as not being fundamentally different from a large lake or stream. Among the [recorded] creation myths of the O'odham peoples, at least two contain gods or demigods turning small rivers into vast oceans, splitting apart the original peoples of the Earth, although the survival of remote peoples is left ambiguous. One of these stories later goes on to discuss the people who survived the flood on the other side of the ocean, who were conveniently white-skinned. Another passage from the same source states that another group of people over the ocean were in fact dark brown. Both of these groups were the result of mistakes in creation, after which the perfectly colored Hohokam groups were created. As prophetic as these may sound, our one source of these tales was recorded from a drunkard by a priest in the 1930s. Given that it is the only semi-complete history of the O'odham remaining today, we have no means to determine how far back the individual elements go. 
+
+Among the Hopi and other Puebloan peoples, we have an understanding that the oceans were not the complete end of land. At the very least they understood that people lived in the islands off the Atlantic and Pacific coasts from trade with groups living nearer to the sea. 
+
+Both groups had an accurate understanding of the geography of their continent between the oceans and an understanding that humans could live on the water as their neighbors did. It's not impossible that they conceived of other lands similar to their own across the water, which was understood to be similar to a large river or lake. The stories we have hint at this understanding, but the near-complete absence of historical records about the O'odham and Yuman people make that suggestion speculative at best. The situation among the Puebloans is little better. While they clearly understood the concept of sailing quite well, the myths make scarce mention of foreign lands that would not have been visible from shore.
+
+Bahr, Donald M., et al. *The short, swift time of gods on earth: The Hohokam chronicles.* Univ of California Press, 1994.
+
+Courlander, Harold, ed. *The fourth world of the Hopis.* UNM Press, 1971.
+
+[0;0m
+[1;31m- - - NEW EPISODE: lfqa - - -[0;0m
+[0mIs it possible that in the distant future, an organism that exists right now on Earth, will evolve to the point that it can be considered intelligent life? Which animal comes the closest? [0;0m
+   [1;94m > Is it possible that in the distant future, an organism that exists right now on Earth, will evolve to the point that it can be considered intelligent life?
+
+Yes, it's possible, but by no means is it a sure thing.  Evolution doesn't have a goal in mind, nor does it have specific end points that are inherently better than others.  Evolution adapts to the environment, and what works works, what doesn't dies off.
+ > Which animal comes the closest?
+
+We have a difficult time defining intelligence *within our own species*.  The difficulty goes up astronomically when you look at other species.
+
+Are you talking about technic intelligence?  It's unlikely anything in the ocean will ever develop technology (at least, as far as we can tell - without fire lots of tools are going to be difficult to make).
+
+Social intelligence?  Well, insects seem to have a big advantage there... but they're probably a ways off on the tool front.
+
+etc, etc, etc.
+
+
+You see the difficulties? [0;0m
+[1;31m- - - NEW EPISODE: lfqa - - -[0;0m
+[0mHow much can you learn from someone's genome?[0;0m
+   [1;94mWell this is fun, we literally just covered this kind of stuff in my advanced molecular biology course.
+
+Your genome will contain variation depending on genetics that has been passed down from your parents.  You may be homozygous for 11 copies of a short-tandem repeat (STR, 2-3 'letters' repeated over and over again in the sequence) where I will be heterozygous for 13 and 8 copies. Your "DNA fingerprint" that the FBI uses involves these regions, when the areas that contain them are amplified by PCR, they show up as different lengths.
+
+Furthermore, there are single-nucleotide-polymorphisms (SNPs) where you may have an A where I have a C (or C-A or T-G or T-A...you get the point).  There are also "indels" - insersions or deletions relative to one genomre or another.  These can serve as markers for disease or other traits, especially if they occur in protein coding genes.  There are a very very large number of these variations, and I could predict (not even close to 100% certainty, though) some traits about you as well as heritable diseases you may carry.  The debate on nature/nurture is how certain could I be given your genotype?
+
+[This database](_URL_0_) is called Online Mendellian Inheritance in Man and catalogs diseases/traits and contains a *wealth* of SNP and indel data about them.  Doing some mining, you can find tables like [these](_URL_1_) that will list all known variants for a gene and link to more information about them.  This example is the Von Willebrands Factor, mutations of which cause Von Willebrands Disease which is a mild bleeding disorder.  I don't know your background, but this site contains a lot of very technical information.
+
+You may have heard of [23andMe](_URL_2_) which is a commercial service that will assay your genome for specific markers as well.
+
+EDIT: If your family has submitted their genomes to a database as well, we could ID them as well[0;0m
+[1;31m- - - NEW EPISODE: lfqa - - -[0;0m
+[0mwhy are hispanics included as whites in statistical polls instead of being considered their own independent demographic like blacks or native americans?[0;0m
+   [1;94mHispanic is not a race.  It's an ethnicity.  There are white Hispanics, black Hispanics, Native American Hispanics, and even Asian Hispanics.
+
+[0;0m
+16:08:59 | loaded 226147 episodes with a total of 226147 examples
+]0;evelyn@rackham3:~/parley/parlai/scripts(parl-env) [evelyn@rackham3 scripts]$ python3 display_data.py -t lfqa[K[7Pconda activate parl-envpython3 display_data.py -t lfq[K[K[Kwizard_of_wikipedia
+16:09:50 | Opt:
+16:09:50 |     add_missing_turns: none
+16:09:50 |     allow_missing_init_opts: False
+16:09:50 |     batchsize: 1
+16:09:50 |     chosen_topic_delimiter: '\n'
+16:09:50 |     datapath: /domus/h1/evelyn/parley/data
+16:09:50 |     datatype: train:ordered
+16:09:50 |     dict_class: None
+16:09:50 |     display_add_fields: 
+16:09:50 |     download_path: None
+16:09:50 |     dynamic_batching: None
+16:09:50 |     hide_labels: False
+16:09:50 |     ignore_agent_reply: True
+16:09:50 |     image_cropsize: 224
+16:09:50 |     image_mode: raw
+16:09:50 |     image_size: 256
+16:09:50 |     include_checked_sentence: True
+16:09:50 |     include_knowledge: True
+16:09:50 |     include_knowledge_separator: False
+16:09:50 |     init_model: None
+16:09:50 |     init_opt: None
+16:09:50 |     is_debug: False
+16:09:50 |     label_type: response
+16:09:50 |     loglevel: info
+16:09:50 |     max_display_len: 1000
+16:09:50 |     model: None
+16:09:50 |     model_file: None
+16:09:50 |     multitask_weights: [1]
+16:09:50 |     mutators: None
+16:09:50 |     num_examples: 10
+16:09:50 |     num_topics: 5
+16:09:50 |     override: {}
+16:09:50 |     parlai_home: /domus/h1/evelyn/parley
+16:09:50 |     starttime: Mar11_16-09
+16:09:50 |     task: wizard_of_wikipedia
+16:09:50 |     verbose: False
+16:09:50 | Current ParlAI commit: 411d74fb54d4218d5f5a496ade79bfb4dcf6910e
+16:09:50 | Current internal commit: 411d74fb54d4218d5f5a496ade79bfb4dcf6910e
+16:09:50 | Current fb commit: 411d74fb54d4218d5f5a496ade79bfb4dcf6910e
+16:09:50 | creating task(s): wizard_of_wikipedia
+[building data: /domus/h1/evelyn/parley/data/wizard_of_wikipedia]
+16:09:50 | Downloading http://parl.ai/downloads/wizard_of_wikipedia/wizard_of_wikipedia.tgz to /domus/h1/evelyn/parley/data/wizard_of_wikipedia/wizard_of_wikipedia.tgz
+Downloading wizard_of_wikipedia.tgz: 0.00B [00:00, ?B/s]Downloading wizard_of_wikipedia.tgz:   0%|                         | 32.8k/972M [00:01<16:21:37, 16.5kB/s]Downloading wizard_of_wikipedia.tgz:   0%|                          | 65.5k/972M [00:02<7:34:07, 35.7kB/s]Downloading wizard_of_wikipedia.tgz:   0%|                           | 131k/972M [00:02<3:17:31, 82.0kB/s]Downloading wizard_of_wikipedia.tgz:   0%|                            | 295k/972M [00:02<1:11:54, 225kB/s]Downloading wizard_of_wikipedia.tgz:   0%|                              | 623k/972M [00:02<29:48, 543kB/s]Downloading wizard_of_wikipedia.tgz:   0%|                            | 1.25M/972M [00:02<13:28, 1.20MB/s]Downloading wizard_of_wikipedia.tgz:   0%|                            | 2.56M/972M [00:03<05:59, 2.69MB/s]Downloading wizard_of_wikipedia.tgz:   1%|▏                           | 5.11M/972M [00:03<02:48, 5.75MB/s]Downloading wizard_of_wikipedia.tgz:   1%|▎                           | 9.31M/972M [00:03<01:30, 10.7MB/s]Downloading wizard_of_wikipedia.tgz:   1%|▍                           | 13.5M/972M [00:03<01:06, 14.3MB/s]Downloading wizard_of_wikipedia.tgz:   2%|▌                           | 17.7M/972M [00:03<00:55, 17.2MB/s]Downloading wizard_of_wikipedia.tgz:   2%|▌                           | 21.7M/972M [00:03<00:50, 19.0MB/s]Downloading wizard_of_wikipedia.tgz:   3%|▋                           | 25.8M/972M [00:04<00:46, 20.5MB/s]Downloading wizard_of_wikipedia.tgz:   3%|▊                           | 29.9M/972M [00:04<00:44, 21.2MB/s]Downloading wizard_of_wikipedia.tgz:   4%|▉                           | 34.1M/972M [00:04<00:41, 22.5MB/s]Downloading wizard_of_wikipedia.tgz:   4%|█                           | 38.3M/972M [00:04<00:40, 23.0MB/s]Downloading wizard_of_wikipedia.tgz:   4%|█▏                          | 42.5M/972M [00:04<00:39, 23.5MB/s]Downloading wizard_of_wikipedia.tgz:   5%|█▎                          | 46.6M/972M [00:04<00:39, 23.2MB/s]Downloading wizard_of_wikipedia.tgz:   5%|█▍                          | 50.7M/972M [00:05<00:38, 23.9MB/s]Downloading wizard_of_wikipedia.tgz:   6%|█▌                          | 54.9M/972M [00:05<00:38, 24.1MB/s]Downloading wizard_of_wikipedia.tgz:   6%|█▋                          | 59.1M/972M [00:05<00:37, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:   7%|█▊                          | 63.2M/972M [00:05<00:37, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:   7%|█▉                          | 67.3M/972M [00:05<00:37, 24.1MB/s]Downloading wizard_of_wikipedia.tgz:   7%|██                          | 71.5M/972M [00:05<00:37, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:   8%|██▏                         | 75.7M/972M [00:06<00:36, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:   8%|██▎                         | 79.9M/972M [00:06<00:37, 23.8MB/s]Downloading wizard_of_wikipedia.tgz:   9%|██▍                         | 84.1M/972M [00:06<00:36, 24.5MB/s]Downloading wizard_of_wikipedia.tgz:   9%|██▌                         | 87.9M/972M [00:06<00:36, 23.9MB/s]Downloading wizard_of_wikipedia.tgz:   9%|██▋                         | 92.1M/972M [00:06<00:36, 23.9MB/s]Downloading wizard_of_wikipedia.tgz:  10%|██▊                         | 96.3M/972M [00:06<00:36, 24.1MB/s]Downloading wizard_of_wikipedia.tgz:  10%|██▉                          | 100M/972M [00:07<00:36, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:  11%|███                          | 104M/972M [00:07<00:36, 24.1MB/s]Downloading wizard_of_wikipedia.tgz:  11%|███▏                         | 109M/972M [00:07<00:36, 23.6MB/s]Downloading wizard_of_wikipedia.tgz:  12%|███▎                         | 113M/972M [00:07<00:35, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  12%|███▍                         | 117M/972M [00:07<00:35, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  12%|███▌                         | 121M/972M [00:07<00:34, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  13%|███▋                         | 125M/972M [00:08<00:34, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  13%|███▊                         | 130M/972M [00:08<00:34, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  14%|███▉                         | 134M/972M [00:08<00:34, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  14%|████                         | 138M/972M [00:08<00:34, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  15%|████▏                        | 142M/972M [00:08<00:33, 24.5MB/s]Downloading wizard_of_wikipedia.tgz:  15%|████▎                        | 146M/972M [00:09<00:33, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  15%|████▍                        | 151M/972M [00:09<00:33, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  16%|████▌                        | 155M/972M [00:09<00:33, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  16%|████▋                        | 159M/972M [00:09<00:33, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  17%|████▊                        | 163M/972M [00:09<00:33, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:  17%|████▉                        | 167M/972M [00:09<00:33, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  18%|█████                        | 171M/972M [00:10<00:32, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  18%|█████▏                       | 175M/972M [00:10<00:32, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:  18%|█████▎                       | 180M/972M [00:10<00:32, 24.1MB/s]Downloading wizard_of_wikipedia.tgz:  19%|█████▍                       | 184M/972M [00:10<00:32, 24.0MB/s]Downloading wizard_of_wikipedia.tgz:  19%|█████▌                       | 188M/972M [00:10<00:32, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  20%|█████▋                       | 192M/972M [00:10<00:32, 24.1MB/s]Downloading wizard_of_wikipedia.tgz:  20%|█████▊                       | 196M/972M [00:11<00:31, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  21%|█████▉                       | 201M/972M [00:11<00:31, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  21%|██████                       | 205M/972M [00:11<00:31, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:  21%|██████▏                      | 209M/972M [00:11<00:31, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  22%|██████▎                      | 213M/972M [00:11<00:31, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  22%|██████▍                      | 217M/972M [00:11<00:30, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  23%|██████▌                      | 221M/972M [00:12<00:30, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  23%|██████▋                      | 226M/972M [00:12<00:30, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  24%|██████▊                      | 230M/972M [00:12<00:30, 24.0MB/s]Downloading wizard_of_wikipedia.tgz:  24%|██████▉                      | 234M/972M [00:12<00:30, 24.1MB/s]Downloading wizard_of_wikipedia.tgz:  24%|███████                      | 238M/972M [00:12<00:31, 23.5MB/s]Downloading wizard_of_wikipedia.tgz:  25%|███████▏                     | 242M/972M [00:12<00:30, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:  25%|███████▎                     | 246M/972M [00:13<00:29, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  26%|███████▍                     | 250M/972M [00:13<00:29, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  26%|███████▌                     | 254M/972M [00:13<00:30, 23.4MB/s]Downloading wizard_of_wikipedia.tgz:  27%|███████▋                     | 258M/972M [00:13<00:30, 23.5MB/s]Downloading wizard_of_wikipedia.tgz:  27%|███████▊                     | 262M/972M [00:13<00:30, 23.5MB/s]Downloading wizard_of_wikipedia.tgz:  27%|███████▉                     | 266M/972M [00:14<00:29, 23.6MB/s]Downloading wizard_of_wikipedia.tgz:  28%|████████                     | 270M/972M [00:14<00:29, 24.0MB/s]Downloading wizard_of_wikipedia.tgz:  28%|████████▏                    | 275M/972M [00:14<00:28, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  29%|████████▎                    | 279M/972M [00:14<00:29, 23.8MB/s]Downloading wizard_of_wikipedia.tgz:  29%|████████▍                    | 283M/972M [00:14<00:28, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  30%|████████▌                    | 287M/972M [00:14<00:28, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  30%|████████▋                    | 291M/972M [00:15<00:28, 24.1MB/s]Downloading wizard_of_wikipedia.tgz:  30%|████████▊                    | 296M/972M [00:15<00:27, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  31%|████████▉                    | 300M/972M [00:15<00:27, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  31%|█████████                    | 304M/972M [00:15<00:27, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  32%|█████████▏                   | 308M/972M [00:15<00:27, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  32%|█████████▎                   | 312M/972M [00:15<00:27, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  33%|█████████▍                   | 316M/972M [00:16<00:26, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  33%|█████████▌                   | 321M/972M [00:16<00:26, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  33%|█████████▋                   | 325M/972M [00:16<00:26, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  34%|█████████▊                   | 329M/972M [00:16<00:26, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  34%|█████████▉                   | 333M/972M [00:16<00:26, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  35%|██████████                   | 337M/972M [00:16<00:26, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  35%|██████████▏                  | 341M/972M [00:17<00:25, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  36%|██████████▎                  | 346M/972M [00:17<00:25, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  36%|██████████▍                  | 350M/972M [00:17<00:25, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  36%|██████████▌                  | 354M/972M [00:17<00:25, 24.0MB/s]Downloading wizard_of_wikipedia.tgz:  37%|██████████▋                  | 358M/972M [00:17<00:25, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:  37%|██████████▊                  | 362M/972M [00:17<00:25, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:  38%|██████████▉                  | 366M/972M [00:18<00:25, 23.8MB/s]Downloading wizard_of_wikipedia.tgz:  38%|███████████                  | 370M/972M [00:18<00:24, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  39%|███████████▏                 | 375M/972M [00:18<00:24, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  39%|███████████▎                 | 379M/972M [00:18<00:24, 23.8MB/s]Downloading wizard_of_wikipedia.tgz:  39%|███████████▍                 | 383M/972M [00:18<00:23, 24.7MB/s]Downloading wizard_of_wikipedia.tgz:  40%|███████████▌                 | 387M/972M [00:18<00:23, 24.6MB/s]Downloading wizard_of_wikipedia.tgz:  40%|███████████▋                 | 391M/972M [00:19<00:23, 24.5MB/s]Downloading wizard_of_wikipedia.tgz:  41%|███████████▊                 | 396M/972M [00:19<00:23, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  41%|███████████▉                 | 400M/972M [00:19<00:23, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  42%|████████████                 | 404M/972M [00:19<00:23, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  42%|████████████▏                | 408M/972M [00:19<00:23, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  42%|████████████▎                | 412M/972M [00:19<00:22, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  43%|████████████▍                | 416M/972M [00:20<00:22, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  43%|████████████▌                | 421M/972M [00:20<00:22, 24.1MB/s]Downloading wizard_of_wikipedia.tgz:  44%|████████████▋                | 425M/972M [00:20<00:22, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  44%|████████████▊                | 429M/972M [00:20<00:22, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  45%|████████████▉                | 433M/972M [00:20<00:22, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  45%|█████████████                | 437M/972M [00:21<00:21, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  45%|█████████████▏               | 441M/972M [00:21<00:21, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:  46%|█████████████▎               | 445M/972M [00:21<00:22, 23.7MB/s]Downloading wizard_of_wikipedia.tgz:  46%|█████████████▍               | 449M/972M [00:21<00:21, 24.0MB/s]Downloading wizard_of_wikipedia.tgz:  47%|█████████████▌               | 454M/972M [00:21<00:21, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:  47%|█████████████▋               | 458M/972M [00:21<00:21, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:  48%|█████████████▊               | 462M/972M [00:22<00:21, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:  48%|█████████████▉               | 466M/972M [00:22<00:21, 23.9MB/s]Downloading wizard_of_wikipedia.tgz:  48%|██████████████               | 470M/972M [00:22<00:20, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:  49%|██████████████▏              | 474M/972M [00:22<00:20, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  49%|██████████████▎              | 479M/972M [00:22<00:20, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  50%|██████████████▍              | 483M/972M [00:22<00:20, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  50%|██████████████▌              | 487M/972M [00:23<00:19, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  51%|██████████████▋              | 491M/972M [00:23<00:19, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  51%|██████████████▊              | 495M/972M [00:23<00:19, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:  51%|██████████████▉              | 500M/972M [00:23<00:19, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  52%|███████████████              | 504M/972M [00:23<00:19, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  52%|███████████████▏             | 508M/972M [00:23<00:19, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  53%|███████████████▎             | 512M/972M [00:24<00:18, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  53%|███████████████▍             | 516M/972M [00:24<00:18, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  54%|███████████████▌             | 520M/972M [00:24<00:18, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  54%|███████████████▋             | 525M/972M [00:24<00:18, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  54%|███████████████▊             | 529M/972M [00:24<00:18, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  55%|███████████████▉             | 533M/972M [00:24<00:18, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:  55%|████████████████             | 537M/972M [00:25<00:17, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  56%|████████████████▏            | 541M/972M [00:25<00:17, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  56%|████████████████▎            | 545M/972M [00:25<00:17, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  57%|████████████████▍            | 550M/972M [00:25<00:17, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:  57%|████████████████▌            | 554M/972M [00:25<00:17, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  57%|████████████████▋            | 558M/972M [00:26<00:17, 24.1MB/s]Downloading wizard_of_wikipedia.tgz:  58%|████████████████▊            | 562M/972M [00:26<00:16, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  58%|████████████████▉            | 566M/972M [00:26<00:16, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:  59%|█████████████████            | 570M/972M [00:26<00:16, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  59%|█████████████████▏           | 575M/972M [00:26<00:16, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  60%|█████████████████▎           | 579M/972M [00:26<00:16, 24.1MB/s]Downloading wizard_of_wikipedia.tgz:  60%|█████████████████▍           | 583M/972M [00:27<00:16, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:  60%|█████████████████▌           | 587M/972M [00:27<00:15, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  61%|█████████████████▋           | 591M/972M [00:27<00:15, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  61%|█████████████████▊           | 596M/972M [00:27<00:15, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  62%|█████████████████▉           | 600M/972M [00:27<00:15, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  62%|██████████████████           | 604M/972M [00:27<00:15, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  63%|██████████████████▏          | 608M/972M [00:28<00:14, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  63%|██████████████████▎          | 612M/972M [00:28<00:14, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  63%|██████████████████▍          | 616M/972M [00:28<00:14, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  64%|██████████████████▌          | 621M/972M [00:28<00:14, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  64%|██████████████████▋          | 625M/972M [00:28<00:14, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  65%|██████████████████▊          | 629M/972M [00:28<00:13, 25.8MB/s]Downloading wizard_of_wikipedia.tgz:  65%|██████████████████▊          | 632M/972M [00:28<00:13, 25.3MB/s]Downloading wizard_of_wikipedia.tgz:  65%|██████████████████▉          | 634M/972M [00:29<00:14, 23.1MB/s]Downloading wizard_of_wikipedia.tgz:  66%|███████████████████          | 637M/972M [00:29<00:13, 24.1MB/s]Downloading wizard_of_wikipedia.tgz:  66%|███████████████████▏         | 641M/972M [00:29<00:13, 25.0MB/s]Downloading wizard_of_wikipedia.tgz:  66%|███████████████████▏         | 644M/972M [00:29<00:13, 25.0MB/s]Downloading wizard_of_wikipedia.tgz:  67%|███████████████████▎         | 646M/972M [00:29<00:14, 22.8MB/s]Downloading wizard_of_wikipedia.tgz:  67%|███████████████████▍         | 650M/972M [00:29<00:13, 23.8MB/s]Downloading wizard_of_wikipedia.tgz:  67%|███████████████████▌         | 654M/972M [00:29<00:12, 25.9MB/s]Downloading wizard_of_wikipedia.tgz:  68%|███████████████████▌         | 657M/972M [00:30<00:12, 25.2MB/s]Downloading wizard_of_wikipedia.tgz:  68%|███████████████████▋         | 659M/972M [00:30<00:13, 22.7MB/s]Downloading wizard_of_wikipedia.tgz:  68%|███████████████████▊         | 662M/972M [00:30<00:12, 24.1MB/s]Downloading wizard_of_wikipedia.tgz:  69%|███████████████████▉         | 666M/972M [00:30<00:11, 27.7MB/s]Downloading wizard_of_wikipedia.tgz:  69%|███████████████████▉         | 669M/972M [00:30<00:12, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  69%|████████████████████         | 672M/972M [00:30<00:13, 21.8MB/s]Downloading wizard_of_wikipedia.tgz:  69%|████████████████████▏        | 675M/972M [00:30<00:12, 24.0MB/s]Downloading wizard_of_wikipedia.tgz:  70%|████████████████████▎        | 679M/972M [00:30<00:10, 27.7MB/s]Downloading wizard_of_wikipedia.tgz:  70%|████████████████████▎        | 682M/972M [00:31<00:11, 24.6MB/s]Downloading wizard_of_wikipedia.tgz:  70%|████████████████████▍        | 684M/972M [00:31<00:13, 21.9MB/s]Downloading wizard_of_wikipedia.tgz:  71%|████████████████████▌        | 688M/972M [00:31<00:12, 23.6MB/s]Downloading wizard_of_wikipedia.tgz:  71%|████████████████████▋        | 691M/972M [00:31<00:10, 25.6MB/s]Downloading wizard_of_wikipedia.tgz:  71%|████████████████████▋        | 694M/972M [00:31<00:11, 24.6MB/s]Downloading wizard_of_wikipedia.tgz:  72%|████████████████████▊        | 697M/972M [00:31<00:11, 23.0MB/s]Downloading wizard_of_wikipedia.tgz:  72%|████████████████████▉        | 700M/972M [00:31<00:11, 23.9MB/s]Downloading wizard_of_wikipedia.tgz:  72%|█████████████████████        | 704M/972M [00:31<00:09, 27.3MB/s]Downloading wizard_of_wikipedia.tgz:  73%|█████████████████████        | 707M/972M [00:32<00:10, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  73%|█████████████████████▏       | 709M/972M [00:32<00:11, 21.9MB/s]Downloading wizard_of_wikipedia.tgz:  73%|█████████████████████▎       | 713M/972M [00:32<00:10, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:  74%|█████████████████████▍       | 716M/972M [00:32<00:09, 27.5MB/s]Downloading wizard_of_wikipedia.tgz:  74%|█████████████████████▍       | 719M/972M [00:32<00:10, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  74%|█████████████████████▌       | 722M/972M [00:32<00:11, 21.7MB/s]Downloading wizard_of_wikipedia.tgz:  75%|█████████████████████▋       | 725M/972M [00:32<00:10, 23.9MB/s]Downloading wizard_of_wikipedia.tgz:  75%|█████████████████████▊       | 729M/972M [00:33<00:09, 25.9MB/s]Downloading wizard_of_wikipedia.tgz:  75%|█████████████████████▊       | 732M/972M [00:33<00:09, 24.7MB/s]Downloading wizard_of_wikipedia.tgz:  76%|█████████████████████▉       | 734M/972M [00:33<00:10, 23.0MB/s]Downloading wizard_of_wikipedia.tgz:  76%|██████████████████████       | 738M/972M [00:33<00:09, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  76%|██████████████████████       | 741M/972M [00:33<00:08, 26.6MB/s]Downloading wizard_of_wikipedia.tgz:  77%|██████████████████████▏      | 744M/972M [00:33<00:09, 23.0MB/s]Downloading wizard_of_wikipedia.tgz:  77%|██████████████████████▎      | 746M/972M [00:33<00:09, 24.1MB/s]Downloading wizard_of_wikipedia.tgz:  77%|██████████████████████▍      | 750M/972M [00:33<00:08, 25.9MB/s]Downloading wizard_of_wikipedia.tgz:  77%|██████████████████████▍      | 753M/972M [00:33<00:09, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:  78%|██████████████████████▌      | 755M/972M [00:34<00:09, 22.0MB/s]Downloading wizard_of_wikipedia.tgz:  78%|██████████████████████▋      | 758M/972M [00:34<00:08, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  78%|██████████████████████▋      | 761M/972M [00:34<00:08, 25.8MB/s]Downloading wizard_of_wikipedia.tgz:  79%|██████████████████████▊      | 764M/972M [00:34<00:09, 22.7MB/s]Downloading wizard_of_wikipedia.tgz:  79%|██████████████████████▉      | 767M/972M [00:34<00:08, 24.1MB/s]Downloading wizard_of_wikipedia.tgz:  79%|███████████████████████      | 771M/972M [00:34<00:07, 27.1MB/s]Downloading wizard_of_wikipedia.tgz:  80%|███████████████████████      | 774M/972M [00:34<00:08, 24.5MB/s]Downloading wizard_of_wikipedia.tgz:  80%|███████████████████████▏     | 776M/972M [00:34<00:08, 21.8MB/s]Downloading wizard_of_wikipedia.tgz:  80%|███████████████████████▎     | 779M/972M [00:35<00:08, 23.6MB/s]Downloading wizard_of_wikipedia.tgz:  81%|███████████████████████▍     | 783M/972M [00:35<00:07, 26.6MB/s]Downloading wizard_of_wikipedia.tgz:  81%|███████████████████████▍     | 786M/972M [00:35<00:07, 24.6MB/s]Downloading wizard_of_wikipedia.tgz:  81%|███████████████████████▌     | 789M/972M [00:35<00:07, 23.0MB/s]Downloading wizard_of_wikipedia.tgz:  82%|███████████████████████▋     | 792M/972M [00:35<00:07, 24.6MB/s]Downloading wizard_of_wikipedia.tgz:  82%|███████████████████████▋     | 794M/972M [00:35<00:07, 24.5MB/s]Downloading wizard_of_wikipedia.tgz:  82%|███████████████████████▊     | 797M/972M [00:35<00:07, 23.4MB/s]Downloading wizard_of_wikipedia.tgz:  82%|███████████████████████▉     | 800M/972M [00:35<00:06, 24.7MB/s]Downloading wizard_of_wikipedia.tgz:  83%|███████████████████████▉     | 803M/972M [00:36<00:06, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  83%|████████████████████████     | 805M/972M [00:36<00:06, 24.1MB/s]Downloading wizard_of_wikipedia.tgz:  83%|████████████████████████▏    | 808M/972M [00:36<00:06, 26.4MB/s]Downloading wizard_of_wikipedia.tgz:  83%|████████████████████████▏    | 811M/972M [00:36<00:06, 24.1MB/s]Downloading wizard_of_wikipedia.tgz:  84%|████████████████████████▎    | 814M/972M [00:36<00:06, 23.1MB/s]Downloading wizard_of_wikipedia.tgz:  84%|████████████████████████▍    | 817M/972M [00:36<00:06, 24.7MB/s]Downloading wizard_of_wikipedia.tgz:  84%|████████████████████████▍    | 819M/972M [00:36<00:06, 24.3MB/s]Downloading wizard_of_wikipedia.tgz:  85%|████████████████████████▌    | 822M/972M [00:36<00:06, 24.1MB/s]Downloading wizard_of_wikipedia.tgz:  85%|████████████████████████▋    | 825M/972M [00:36<00:05, 26.4MB/s]Downloading wizard_of_wikipedia.tgz:  85%|████████████████████████▋    | 828M/972M [00:37<00:06, 23.9MB/s]Downloading wizard_of_wikipedia.tgz:  85%|████████████████████████▊    | 830M/972M [00:37<00:06, 22.9MB/s]Downloading wizard_of_wikipedia.tgz:  86%|████████████████████████▉    | 834M/972M [00:37<00:05, 24.5MB/s]Downloading wizard_of_wikipedia.tgz:  86%|████████████████████████▉    | 836M/972M [00:37<00:05, 24.1MB/s]Downloading wizard_of_wikipedia.tgz:  86%|█████████████████████████    | 839M/972M [00:37<00:05, 23.4MB/s]Downloading wizard_of_wikipedia.tgz:  87%|█████████████████████████▏   | 842M/972M [00:37<00:05, 24.8MB/s]Downloading wizard_of_wikipedia.tgz:  87%|█████████████████████████▏   | 845M/972M [00:37<00:05, 24.1MB/s]Downloading wizard_of_wikipedia.tgz:  87%|█████████████████████████▎   | 847M/972M [00:37<00:05, 23.9MB/s]Downloading wizard_of_wikipedia.tgz:  87%|█████████████████████████▎   | 849M/972M [00:37<00:05, 23.5MB/s]Downloading wizard_of_wikipedia.tgz:  88%|█████████████████████████▍   | 852M/972M [00:38<00:05, 23.0MB/s]Downloading wizard_of_wikipedia.tgz:  88%|█████████████████████████▌   | 855M/972M [00:38<00:04, 24.6MB/s]Downloading wizard_of_wikipedia.tgz:  88%|█████████████████████████▌   | 857M/972M [00:38<00:04, 24.0MB/s]Downloading wizard_of_wikipedia.tgz:  88%|█████████████████████████▋   | 860M/972M [00:38<00:04, 24.4MB/s]Downloading wizard_of_wikipedia.tgz:  89%|█████████████████████████▊   | 863M/972M [00:38<00:04, 26.0MB/s]Downloading wizard_of_wikipedia.tgz:  89%|█████████████████████████▊   | 866M/972M [00:38<00:04, 23.6MB/s]Downloading wizard_of_wikipedia.tgz:  89%|█████████████████████████▉   | 868M/972M [00:38<00:04, 24.1MB/s]Downloading wizard_of_wikipedia.tgz:  90%|██████████████████████████   | 871M/972M [00:38<00:03, 25.2MB/s]Downloading wizard_of_wikipedia.tgz:  90%|██████████████████████████   | 874M/972M [00:38<00:04, 23.0MB/s]Downloading wizard_of_wikipedia.tgz:  90%|██████████████████████████▏  | 876M/972M [00:39<00:04, 23.4MB/s]Downloading wizard_of_wikipedia.tgz:  91%|██████████████████████████▎  | 880M/972M [00:39<00:03, 25.3MB/s]Downloading wizard_of_wikipedia.tgz:  91%|██████████████████████████▎  | 882M/972M [00:39<00:03, 23.8MB/s]Downloading wizard_of_wikipedia.tgz:  91%|██████████████████████████▍  | 885M/972M [00:39<00:03, 23.0MB/s]Downloading wizard_of_wikipedia.tgz:  91%|██████████████████████████▌  | 888M/972M [00:39<00:03, 25.0MB/s]Downloading wizard_of_wikipedia.tgz:  92%|██████████████████████████▌  | 891M/972M [00:39<00:03, 24.2MB/s]Downloading wizard_of_wikipedia.tgz:  92%|██████████████████████████▋  | 893M/972M [00:39<00:03, 23.9MB/s]Downloading wizard_of_wikipedia.tgz:  92%|██████████████████████████▊  | 896M/972M [00:39<00:02, 25.6MB/s]Downloading wizard_of_wikipedia.tgz:  93%|██████████████████████████▊  | 899M/972M [00:40<00:03, 23.9MB/s]Downloading wizard_of_wikipedia.tgz:  93%|██████████████████████████▉  | 902M/972M [00:40<00:02, 24.0MB/s]Downloading wizard_of_wikipedia.tgz:  93%|███████████████████████████  | 905M/972M [00:40<00:02, 25.8MB/s]Downloading wizard_of_wikipedia.tgz:  93%|███████████████████████████  | 907M/972M [00:40<00:02, 24.0MB/s]Downloading wizard_of_wikipedia.tgz:  94%|███████████████████████████▏ | 910M/972M [00:40<00:02, 24.0MB/s]Downloading wizard_of_wikipedia.tgz:  94%|███████████████████████████▎ | 913M/972M [00:40<00:02, 25.0MB/s]Downloading wizard_of_wikipedia.tgz:  94%|███████████████████████████▎ | 916M/972M [00:40<00:02, 23.6MB/s]Downloading wizard_of_wikipedia.tgz:  95%|███████████████████████████▍ | 918M/972M [00:40<00:02, 23.4MB/s]Downloading wizard_of_wikipedia.tgz:  95%|███████████████████████████▌ | 921M/972M [00:40<00:01, 25.5MB/s]Downloading wizard_of_wikipedia.tgz:  95%|███████████████████████████▌ | 924M/972M [00:41<00:02, 23.6MB/s]Downloading wizard_of_wikipedia.tgz:  95%|███████████████████████████▋ | 927M/972M [00:41<00:01, 24.0MB/s]Downloading wizard_of_wikipedia.tgz:  96%|███████████████████████████▊ | 930M/972M [00:41<00:01, 25.7MB/s]Downloading wizard_of_wikipedia.tgz:  96%|███████████████████████████▊ | 932M/972M [00:41<00:01, 23.7MB/s]Downloading wizard_of_wikipedia.tgz:  96%|███████████████████████████▉ | 935M/972M [00:41<00:01, 23.8MB/s]Downloading wizard_of_wikipedia.tgz:  97%|████████████████████████████ | 938M/972M [00:41<00:01, 25.7MB/s]Downloading wizard_of_wikipedia.tgz:  97%|████████████████████████████ | 941M/972M [00:41<00:01, 23.8MB/s]Downloading wizard_of_wikipedia.tgz:  97%|████████████████████████████▏| 943M/972M [00:41<00:01, 23.5MB/s]Downloading wizard_of_wikipedia.tgz:  97%|████████████████████████████▎| 947M/972M [00:41<00:00, 25.7MB/s]Downloading wizard_of_wikipedia.tgz:  98%|████████████████████████████▎| 949M/972M [00:42<00:00, 23.8MB/s]Downloading wizard_of_wikipedia.tgz:  98%|████████████████████████████▍| 952M/972M [00:42<00:00, 23.4MB/s]Downloading wizard_of_wikipedia.tgz:  98%|████████████████████████████▌| 955M/972M [00:42<00:00, 25.8MB/s]Downloading wizard_of_wikipedia.tgz:  99%|████████████████████████████▌| 958M/972M [00:42<00:00, 23.5MB/s]Downloading wizard_of_wikipedia.tgz:  99%|████████████████████████████▋| 960M/972M [00:42<00:00, 23.5MB/s]Downloading wizard_of_wikipedia.tgz:  99%|████████████████████████████▊| 963M/972M [00:42<00:00, 25.9MB/s]Downloading wizard_of_wikipedia.tgz:  99%|████████████████████████████▊| 966M/972M [00:42<00:00, 23.9MB/s]Downloading wizard_of_wikipedia.tgz: 100%|████████████████████████████▉| 968M/972M [00:42<00:00, 22.8MB/s]Downloading wizard_of_wikipedia.tgz: 100%|█████████████████████████████| 972M/972M [00:43<00:00, 15.0MB/s]Downloading wizard_of_wikipedia.tgz: 100%|█████████████████████████████| 972M/972M [00:43<00:00, 22.5MB/s]
+loading: /domus/h1/evelyn/parley/data/wizard_of_wikipedia/train.json
+16:11:47 | [33mSome data not being used. If you are not trying to reproduce the previous results, it is recommended that you run with the flag --add-missing-turns train or --add-missing-turns all.[0m
+[1;31m- - - NEW EPISODE: wizard_of_wikipedia - - -[0;0m
+[0mScience fiction[0;0m
+   [1;94mI think science fiction is an amazing genre for anything. Future science, technology, time travel, FTL travel, they're all such interesting concepts.[0;0m
+[0mI'm a huge fan of science fiction myself! [0;0m
+   [1;94mAwesome! I really love how sci-fi storytellers focus on political/social/philosophical issues that would still be around even in the future. Makes them relatable.[0;0m
+[0mI agree. One of my favorite forms of science fiction is anything related to time travel! I find it fascinating.[0;0m
+   [1;94mIt's not quite sci-fi, but my favorite version of time travel is in Harry Potter and the Prisoner of Azkaban. Breaks zero logical rules.[0;0m
+[0mAnd that's difficult to do when dealing with time travel. I actually haven't seen the latest Harry Potter movies. Guess it's time to check them out![0;0m
+   [1;94mIf you really want a look at the potential negative consequences of scientific innovation, what you should check out is the TV show Fringe. Incredibly well written.[0;0m
+[1;31m- - - NEW EPISODE: wizard_of_wikipedia - - -[0;0m
+[0mInternet access
+Can you imagine the world without internet access? [0;0m
+   [1;94mNo I could not! I couldn't imagine living when internet access was rare and very few people had it![0;0m
+[0mOh me either! It seems like such a long time ago. I wonder when Internet was first created?[0;0m
+   [1;94mIt used to be restricted, but around 1995, the restricted were lifted and commercial use of it began[0;0m
+[0mThat is awesome. I wonder why it was restricted? Probably because they only wanted government and big companies to use it at first.[0;0m
+   [1;94mYes, it was developed from a government funded projects to help with universities research and laboratories in the United States...I am so glad they expanded it! [0;0m
+[0mI am too, it makes life so much easier![0;0m
+   [1;94mWhat is your favorite thing to do with internet access? I like being able to use my computer and smartphone to use my email and browse the world wide web[0;0m
+[1;31m- - - NEW EPISODE: wizard_of_wikipedia - - -[0;0m
+[0mPharmacist
+I am just finishing my university course and I will be a qualified pharmacist.  I am so excited about finishing and getting out there into the world of work! Do you work yourself?[0;0m
+   [1;94mYes, I perform administrative duties as a pharmacy technician.[0;0m
+[0mFantastic so you know all about the field.  I completed my four year course and also two 6 month placements but its not the same until you actually start working.  Do you work in a busy pharmacy?[0;0m
+   [1;94mYes, I work directly with a lot of patients.[0;0m
+16:12:24 | loaded 18430 episodes with a total of 74092 examples
+]0;evelyn@rackham3:~/parley/parlai/scripts(parl-env) [evelyn@rackham3 scripts]$ module list
+
+Currently Loaded Modules:
+  1) uppmax
+
+ 
+
+]0;evelyn@rackham3:~/parley/parlai/scripts(parl-env) [evelyn@rackham3 scripts]$ module avail
+
+-------------------------------------- /sw/mf/rackham/applications ---------------------------------------
+   ABINIT/8.10.3                          emacs/27.2                       (D)
+   ALPS/2.3.0                             freesurfer/6.0.0
+   Amber/20                               gamess/20170930
+   Ansys/19.1                             gaussian/g09.d01
+   Ansys/19.5                             gaussview/5.0.8
+   Ansys/2020R1                    (D)    gawk/4.1.4
+   Armadillo/9.700.2               (D)    gdl/1.0.0-rc.1
+   CDO/1.9.5                              gnuplot/system
+   CDO/1.9.7.1-intel18.3                  gnuplot/5.0.7
+   CDO/1.9.7.1                     (D)    gnuplot/5.2.7                    (D)
+   COIN-OR-OptimizationSuite/1.8.0        groff/1.22.3
+   Cromwell/71                            gromacs-plumed/2019.4.th
+   DOCK/3.7                               gromacs-saxs/2020.04-9edbdbc
+   FFmpeg/4.4                             gromacs/4.5.7.th
+   GDAL/2.1.0                             gromacs/4.6.3
+   GDAL/3.1.0                      (D)    gromacs/4.6.5.th
+   GOTM/5.3-221-gac7ec88d                 gromacs/4.6.5
+   GhostPDL/9.53.3                        gromacs/4.6.7.th.dp
+   GoogleCloudSDK/217.0.0                 gromacs/4.6.7.th
+   Graphviz/2.40.1                        gromacs/5.0.4
+   ImageJ/1.52j                           gromacs/5.0.7
+   ImageMagick/6.9.9-35                   gromacs/5.1.1
+   ImageMagick/7.0.11-3            (D)    gromacs/5.1.5
+   JAGS/4.2.0                             gromacs/2016.1
+   JAGS/4.3.0                      (D)    gromacs/2016.6
+   KyotoTycoon/stable-20170410            gromacs/2018.6.th
+   MariaDB/10.1.29                        gromacs/2018.6
+   MariaDB/10.2.11                 (D)    gromacs/2019.1.th
+   MultiBUGS/2.0                          gromacs/2019.1
+   NCL-graphics/6.6.2                     gromacs/2019.6.th
+   NCO/4.8.1                              gromacs/2021.1.th
+   NCO/4.9.2                              gromacs/2021.5.th                (D)
+   NCO/4.9.3                       (D)    h5utils/1.12.1
+   ORCA/4.0.1.2                           haskell-stack/1.0.4.3
+   ORCA/4.2.1                             haskell-stack/1.4.0
+   ORCA/5.0.2                      (D)    haskell-stack/1.7.1              (D)
+   OpenBUGS/3.2.3                         jq/1.6
+   OpenFOAM/v1612+                        lammps/29Oct2020_gcc_openmpi
+   OpenFOAM/v1912                         lammps/31Mar2017_gcc_openmpi     (D)
+   OpenFOAM/2.4.0                         mathematica/11.2
+   OpenFOAM/4.1-waves2Foam                matlab/R2014a
+   OpenFOAM/4.1                           matlab/R2015a
+   OpenFOAM/6                             matlab/R2015b
+   OpenFOAM/7                      (D)    matlab/R2016a
+   PRISMS-PF/2.1.1                        matlab/R2017a
+   PostgreSQL/10.3                        matlab/R2018a
+   PsN/5.0.0                              matlab/R2018b
+   PsN/5.2.6                              matlab/R2019a                    (D)
+   PsN/5.3.0                       (D)    matlab/R2020b
+   QGIS/3.4.12                            matlab/7.4
+   QuantumATK/Q2019.12-SP1                matlab/7.8
+   QuantumESPRESSO/6.7MaX-Release         matlab/7.10
+   QuantumESPRESSO/6.8             (D)    matlab/7.13
+   R/3.0.2                                matlab/8.0
+   R/3.2.3                                matlab/8.1
+   R/3.3.2                                mbuffer/20151002
+   R/3.4.0                                mcl/14-137
+   R/3.4.3                                mesos/1.9.0
+   R/3.5.0                                miniconda2/4.5.4
+   R/3.5.2                                miniconda3/4.5.4
+   R/3.6.0                                molden/5.1
+   R/3.6.1                                ncftp/3.2.6
+   R/4.0.0                                ncview/2.1.7-intel-2019b
+   R/4.0.4                                ncview/2.1.7                     (D)
+   R/4.1.1                         (D)    nonmem/7.3.0
+   ROOT/6.06.08                           nonmem/7.4.3
+   ROOT/6.20.04                           nonmem/7.4.4
+   ROOT/6.22.08                    (D)    nonmem/7.5.0                     (D)
+   RSPt/2019-08-30                        nvtop/2022-02-23
+   RSPt/2020-06-10                        octave/5.1.0
+   RSPt/2021-10-04                 (D)    openbabel/2.4.1-gcc
+   RStudio/1.0.136                        openbabel/3.1.1-gcc9.3.0         (D)
+   RStudio/1.0.143                        p7zip/16.02
+   RStudio/1.0.153                        pandoc/1.16.0.2
+   RStudio/1.1.423                        pandoc/2.2.3.2
+   RStudio/1.1.463                        pandoc/2.10.1
+   RStudio/1.4.1106                (D)    pandoc/2.17.1.1                  (D)
+   R_packages/3.3.0                       paraview/5.6
+   R_packages/3.3.1                       paraview/5.9.1                   (D)
+   R_packages/3.3.2                       pigz/2.4
+   R_packages/3.4.0                       povray/3.7
+   R_packages/3.4.3                       python_ML_packages/3.9.5-cpu
+   R_packages/3.5.0                       python_ML_packages/3.9.5-gpu
+   R_packages/3.5.2                       python_ML_packages/3.9.5         (D)
+   R_packages/3.6.0                       rclone/1.56.2
+   R_packages/3.6.1                       rspt/2018-03-31_intel_mkl
+   R_packages/4.0.0                       scikit-learn/0.22.1
+   R_packages/4.0.4                       siesta/4.1-b3_intel_mkl
+   R_packages/4.1.1                (D)    simpleitk/1.2.4
+   Rosetta/3.7                            spm/12
+   SAIGE/0.42.1                           sqlite/3.8.5
+   SAIGE/0.44.6.5                  (D)    sqlite/3.11.1
+   SAS/9.4                                sqlite/3.16.2
+[7m--More--[27m[K
+]0;evelyn@rackham3:~/parley/parlai/scripts(parl-env) [evelyn@rackham3 scripts]$ lmod
+bash: lmod: command not found
+]0;evelyn@rackham3:~/parley/parlai/scripts(parl-env) [evelyn@rackham3 scripts]$ lmodmodule avail python/[K3/3.89[K[K.[K8.5
+[1;31mNo module(s) or extension(s) found![0m
+Use "module spider" to find all possible modules and extensions.
+Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
+
+
+]0;evelyn@rackham3:~/parley/parlai/scripts(parl-env) [evelyn@rackham3 scripts]$ module avail python3/3.8.5[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[1P3.8.5[1P.8.5[1P8.5[1P.5

@@ -1,0 +1,29 @@
+{
+  "config": {
+    "grammatical": {
+      "name": "This response sounds fluent and grammatical.",
+      "description": "Asks about fluency and grammaticality"
+    },
+    "relevency": {
+      "name": "This response is relevant to what you were talking about. It is sensible.",
+      "description": "Asks about relevancy and sensibility"
+    },
+    "knowledgeableness": {
+      "name": "This response displays the partner's depth of breath of knowledge? It is informative.",
+      "description": "Asks about knowledgeableness and informativeness"
+    },
+    "engaging": {
+      "name": "This response is interesting. It makes you want to talk to your partner in a long conversation.",
+      "description": "Asks about engagingness and interestingness"
+    },
+    "accuracy": {
+      "name": "If you know about the fact(s) in this response, would you say the fact(s) are accurate?",
+      "description": "Asks about factualy accuracy"
+    },
+    "none": {
+      "name": "(None of the above)",
+      "description": "What to check if you can't check any of the others"
+    }
+  },
+  "show_line_breaks": true
+}
