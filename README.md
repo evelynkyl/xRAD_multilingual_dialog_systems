@@ -298,7 +298,7 @@ python3 self_chat.py -mf izoo:models/genmdm_400M/genmdm_400M \
 
 
 ## [Acknowledgment](#acknowledgment)
-I am grateful to the authors of CORA, DPR, FAISS, XORQA, TyDi QA, and LFQA for providing reproducible training scripts and datasets, as well as ParlAI and Mephisto for open-sourcing their models and frameworks. I would like to thank my supervisor at Johan Sjons at Uppsala University for his invaluable feedback and insights. I would also like to thank the volunteering participants for providing assessments of the dialogue systems and their invaluable feedback, which is immensely helpful for analyzing and interpreting the performance and quality of the conversational AI systems.
+I am grateful to the authors of CORA, BlenderBot, DPR, FAISS, XORQA, TyDi QA, and LFQA for providing reproducible training scripts and datasets, as well as ParlAI and Mephisto for open-sourcing their models and frameworks. I would like to thank my supervisor at Johan Sjons at Uppsala University for his invaluable feedback and insights. I would also like to thank the volunteering participants for providing assessments of the dialogue systems and their invaluable feedback, which is immensely helpful for analyzing and interpreting the performance and quality of the conversational AI systems.
 
 
 ## [Citation and Contact](#citation-and-contact)
