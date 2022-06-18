@@ -9,5 +9,5 @@ There are many more agents in the [official repo](https://github.com/facebookres
 - **local_human**: receives human input from the terminal. used for interactive mode, e.g. `parlai/scripts/interactive.py`.
 
 - **transformer**: both generative and retrieval-based transformer models
-- **hugging_face**: includes GPT2, T5, and DialoGPT from HuggingFace. [`parlai_internal/agents/hugging_face`](https://github.com/evelynkyl/xRAD_multilingual_dialog_systems/main/parlai_internal/agents/hugging_face) contains mT5 as well.
+- **hugging_face**: includes GPT2, T5, and DialoGPT from HuggingFace. [`parlai_internal/agents/hugging_face`](https://github.com/evelynkyl/xRAD_multilingual_dialog_systems/main/tree/parlai_internal/agents/hugging_face) contains mT5 as well.
 
