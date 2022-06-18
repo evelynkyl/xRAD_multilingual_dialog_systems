@@ -132,7 +132,7 @@ python3 /parlai/agents/cora/scripts/index_dense_embeddings.py \
 
 2. Multi-task training on the modified model architecture
 
-**Note that both mT5 and CORA were not implemented in ParlAI, so I have ported both of them to ParlAI in order to train the model on ParlAI. They are in `parlai/agents/cora`  and `internal_parlai/agents/mgen`.
+**Note that both mT5 and CORA were not implemented in ParlAI, so I have ported both of them to ParlAI in order to train the model on ParlAI. They are in `parlai/agents/cora`  and `internal_parlai/agents/mt5`.
 
 ```bash
 python3 train_model.py --model cora \ 
