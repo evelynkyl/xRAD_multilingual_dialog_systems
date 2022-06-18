@@ -1,6 +1,5 @@
 
 # Multilingual Knowledge-grounded Dialogue Systems
--------------------------------------------------------------------------------------------------------------------------------------------------------
 
 The implementation of the master's thesis work [Can Wizards be Polyglots: Towards a Multilingual Knowledge-grounded Dialogue System](http://urn.kb.se/resolve?urn=urn:nbn:se:uu:diva-477541). 
 
@@ -24,10 +23,10 @@ xGenD took advantage of an existing English dialogue model (BlenderBot 400M Dist
 6. [Citation and Contact](https://github.com/evelynkyl/xRAD_multilingual_dialog_systems#citation-and-contact)
 
 ## [Data and Pre-trained Models](#data-and-pre-trained-models)
-1. Download the datasets
-Unzip the datasets and then place them in a suitable location
 
-### Data
+<details><summary>Datasets</summary><p>
+Unzip the datasets and then place them in a suitable location
+  
 1. mGEN training data from [XOR-TyDi QA (Asai et al., 2021)](https://nlp.cs.washington.edu/xorqa/)
 ```bash
 mkdir data
@@ -36,15 +35,19 @@ wget https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_dev_full_v1_1.jsonl
 wget https://nlp.cs.washington.edu/xorqa/XORQA_site/data/xor_test_full_q_only_v1_1.jsonl
 cd ..
 ```
-2. [LFQA data](https://huggingface.co/spaces/lfqa/lfqa)
+
+2. [Long-form QA (LFQA) data](https://huggingface.co/spaces/lfqa/lfqa)
 ```bash
 wget https://huggingface.co/datasets/vblagoje/lfqa/blob/main/train.json
 wget https://huggingface.co/datasets/vblagoje/lfqa/blob/main/validation.json
 wget https://huggingface.co/datasets/vblagoje/lfqa/blob/main/test.json
 ```
+</p></details>
 
-### Trained models
+<details><summary>Trained models</summary><p>
+  
 Download the pre-trained mDPR and mGEN models from [CORA, Asai et al., 2021](https://arxiv.org/abs/2107.11976).
+  
 ```bash
 mkdir models
 wget https://nlp.cs.washington.edu/xorqa/cora/models/all_w100.tsv
@@ -52,12 +55,14 @@ wget https://nlp.cs.washington.edu/xorqa/cora/models/mGEN_model.zip
 wget https://nlp.cs.washington.edu/xorqa/cora/models/mDPR_biencoder_best.cpt
 unzip -xf all_w100.tsv
 tar -xf mDPR_cpt
-unzip mGEN_model.zip
 ```
+  
+</p></details>
 
-### mDPR dense embeddings
-Download the multilingual dense embeddings of mDPR for building a FAISS index.
-```
+<details><summary>mDPR dense embeddings</summary><p>
+
+  Download the multilingual dense embeddings of mDPR for building a FAISS index.
+```bash
 unzip mGEN_model.zip
 mkdir cora/embeddings
 cd embeddings
@@ -71,6 +76,8 @@ do
 done
 cd ../..
 ```
+</p></details>
+
 
 ## [Pre-requisite and Installation](pre-requisite-and-installation)
 ### Technical requirements
@@ -103,14 +110,15 @@ git clone https://github.com/evelynkyl/xRAD_multilingual_dialog_systems.git
 If you have multiple GPUs or have access to SLURM, you can use the follwoing instead of `train_model.py`.
 ```bash
 # for multi-GPUs training
-python multiprocessing_train.py -mf izoo: -t blended_skill_talk
+python3 multiprocessing_train.py
 ```
 ```bash
 # for distributed training using SLURM cluster
-python distributed_train.py -mf izoo: -t blended_skill_talk
+python3 distributed_train.py
 ```
 
 ### xRAD
+---------------------------------------------------------------------
 1. Build a compressed FAISS index using the multilingual dense embeddings 
 ```bash
 python3 /parlai/agents/cora/scripts/index_dense_embeddings.py \ 
@@ -123,7 +131,8 @@ python3 /parlai/agents/cora/scripts/index_dense_embeddings.py \
 ```
 
 2. Multi-task training on the modified model architecture
-Note that both mT5 and CORA were not implemented in ParlAI, so I have ported both of them to ParlAI in order to train the model on ParlAI. They are in `parlai/agents/cora`  and `internal_parlai/agents/mgen`.
+
+**Note that both mT5 and CORA were not implemented in ParlAI, so I have ported both of them to ParlAI in order to train the model on ParlAI. They are in `parlai/agents/cora`  and `internal_parlai/agents/mgen`.
 
 ```bash
 python3 train_model.py --model cora \ 
@@ -144,6 +153,8 @@ python3 train_model.py --model cora \
 ```
 
 ### xGenD
+---------------------------------------------------------------------
+
 1. Intermediate training on English dialogue and LFQA data
 ```bash
 python3 train_model.py -mf zoo:blender/blender_400Mdistill/model --model transformer/generator \
@@ -185,7 +196,7 @@ python3 train_model.py -mf izoo:models/400M_genmdm_seq_exp1/400M_genmdm_seq_exp1
 
 ## [Evaluation](#evaluation)
 ### Automatic evaluation
-It is important to note that quantative evaluation was only performed for English dialogue, given the unavailability of multilingual dialogue datasets for all five of the target languages. It is used as an estimation to the performance of the models; however, since automated metrics are still not quite reliable for evaluating open dialogue tasks, human evaluation is key. In this case, perplexity was used as the automated metric since it was reported to have stronger correlation to human judgment (Ad et al, 2021).
+It is important to note that quantative evaluation was only performed for English dialogue, given the unavailability of multilingual dialogue datasets for all five of the target languages. It is used as an estimation to the performance of the models; however, since automated metrics are still not quite reliable for evaluating open dialogue tasks, human evaluation is key. In this case, perplexity was used as the automated metric since it was reported to have a stronger correlation to human judgment ([Adiwardana et al., 2020](https://arxiv.org/abs/2001.09977)).
 
 To run automatic evaluations, use the commands below:
 
@@ -221,7 +232,7 @@ python3 eval_model.py -mf zoo:blender/blender_400Mdistill/model \
 ```
 
 ### [Human evaluation](#human-eval)
-To launch human evaluation, we will use the Mephisto framework. For more information about how to use the framework, see their [documentation](https://mephisto.ai). For each evaluation task, a configuration yaml file is required to set the parameters. Examples can be found in folder `hydra_configs/conf`. The original scripts from Mephisto were for comparing between two models, however I modified the backend and frontend so that I can compare three models (baseline, xRAD, xGenD) instead. 
+To launch human evaluation, we will use the Mephisto framework. For more information about how to use the framework, see their [documentation](https://mephisto.ai). For each evaluation task, a configuration yaml file is required to set the parameters. Examples can be found in folder [`hydra_configs/conf`](https://github.com/evelynkyl/xRAD_multilingual_dialog_systems/blob/main/parlai/crowdsourcing/tasks/model_chat/hydra_configs/conf/). The original scripts from Mephisto were for comparing between two models, however I modified the backend and frontend so that I can compare three models (baseline, xRAD, xGenD) instead. 
 
 #### Single model evaluation
 This evaluation lets a human participant chat with the model for seven turns, and at the end of each turn the participant can rate the model response on the aspects of grammaticality (fluency), relevance, interestingness, engagingness, factual accuracy,and knowledgeableness on a scale of five. At the end of the conversation, the participant will also have the chance to give an overall rating of the model on the same conversaional qualities.
