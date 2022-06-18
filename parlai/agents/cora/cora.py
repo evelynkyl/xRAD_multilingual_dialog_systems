@@ -1,16 +1,10 @@
-#!/usr/bin/env python3
+"""
+One Question Answering Model for Many Languages with Cross-lingual Dense Passage Retrieval.
 
-# Copyright (c) Facebook, Inc. and its affiliates.
-# This source code is licensed under the MIT license found in the
-# LICENSE file in the root directory of this source tree.
+Original Paper: https://arxiv.org/abs/2107.11976
 
 """
-Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.
 
-Original Paper: https://arxiv.org/abs/2005.11401
-
-As used in ParlAI: https://arxiv.org/abs/2104.07567
-"""
 from abc import ABC, abstractstaticmethod
 import os
 import torch
