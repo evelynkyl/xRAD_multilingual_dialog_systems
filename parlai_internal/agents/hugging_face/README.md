@@ -1,6 +1,32 @@
 # Hugging Face
 
-We offer wrappers for generative transformers from [Hugging Face's transformers repository](https://github.com/huggingface/transformers) for fine-tuning and evaluating in ParlAI.
+Wrappers for generative transformers from [Hugging Face's transformers repository](https://github.com/huggingface/transformers) for fine-tuning and evaluating in ParlAI.
+
+
+## mT5
+
+"mT5: A Massively Multilingual Pre-trained Text-to-Text Transformer"
+
+See https://aclanthology.org/2021.naacl-main.41/.
+
+
+### Implementation
+
+The mT5 model in ParlAI is based on the `mT5ForConditionalGeneration` and `T5ForConditionalGeneration` provided by the [HuggingFace Transformers](https://github.com/huggingface/transformers) library. The model can be instantiated with any of the provided architectures there:
+
+- `mt5-small`: 60 million parameters
+- `mt5-base`: 220 million parameters (default)
+- `mt5-large`: 770 million parameters
+- `mt5-xxl`: 11 billion parameters
+
+**Model Parallel**: HuggingFace has implemented model parallel for mT5, however it is an experimental feature, so proceed at your own risk; you can use model parallel by simply specifying `--mt5-model-parallel`.
+
+### Basic Examples
+
+#### Train mt5 large on convai2.
+```bash
+parlai train_model -m internal:hugging_face/mt5 -mf /tmp/model_file -t convai2 -bs 24 --fp16 true -eps 1 -lr 1e-5 --optimizer adam --mt5-model-arch mt5-base
+```
 
 ## GPT2
 To use GPT2, run your command with the flag: `-m hugging_face/gpt2`. And suppose you want to use another model other 
