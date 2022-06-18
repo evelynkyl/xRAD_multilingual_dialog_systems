@@ -12,7 +12,7 @@ The script provided in this repo includes the necessary steps to reproduce the r
 
 xRAD was adopted from a pre-trained multilingual question answering (QA) system ([CORA, Asai et al., 2021](https://arxiv.org/abs/2107.11976)) and comprises a multilingual neural retriever (mDPR) and a multilingual generation model (mGEN) with modification in the model arhitecture to add in dialogue context, followed by multi-task training to perform transfer learning.
 
-xGenD took advantage of an existing English dialogue model (BlenderBot 400M Distilled) and performed a zero-shot cross-lingual transfer by training sequentially on English dialogue and multilingual QA datasets.
+xGenD took advantage of an existing English dialogue model ([BlenderBot 400M Distilled](https://parl.ai/projects/recipes/)) and performed a zero-shot cross-lingual transfer by training sequentially on English dialogue and multilingual QA datasets.
 
 ## Contents
 1. [Data and Pre-trained Models](https://github.com/evelynkyl/xRAD_multilingual_dialog_systems#data-and-pre-trained-models)
