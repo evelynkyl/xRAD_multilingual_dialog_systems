@@ -228,9 +228,9 @@ This evaluation lets a human participant chat with the model for seven turns, an
 
 <details><summary>Sample interface</summary><p>
 
-![single model screenshot 1](https://github.com/evelynkyl/xRAD_multilingual_dialog_systems/img/single_model_screenshot1.png?raw=true)
+![single model screenshot 1](https://github.com/evelynkyl/xRAD_multilingual_dialog_systems/blob/main/img/single_model_screenshot1.png?raw=true)
 
-![single model screenshot 2](https://github.com/evelynkyl/xRAD_multilingual_dialog_systems/img/single_model_screenshot3.png?raw=true)
+![single model screenshot 2](https://github.com/evelynkyl/xRAD_multilingual_dialog_systems/blob/main/img/single_model_screenshot3.png?raw=true)
 </p></details>
 
 <details open><summary>Run</summary><p>
@@ -250,7 +250,7 @@ python3 run.py mephisto.provider.requester_name=my_mturk_user mephisto/architect
 #### Model preference evaluation
 <details><summary>Sample interface</summary><p>
 
-![model preference evaluation screenshot](https://github.com/evelynkyl/xRAD_multilingual_dialog_systems/img/model_preference_screenshot.png?raw=true)
+![model preference evaluation screenshot](https://github.com/evelynkyl/xRAD_multilingual_dialog_systems/blob/main/img/model_preference_screenshot.png?raw=true)
 
 </p></details>
 
