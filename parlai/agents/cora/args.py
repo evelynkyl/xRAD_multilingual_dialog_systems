@@ -4,9 +4,9 @@
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree.
 """
-RAG Args.
+CORA Args.
 
-An area to maintain RAG-Related Arguments
+An area to maintain CORA-Related Arguments
 """
 from enum import Enum
 from parlai.core.params import ParlaiParser

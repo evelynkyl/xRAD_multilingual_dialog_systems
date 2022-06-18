@@ -3,7 +3,7 @@
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree.
 """
-Retrievers for RAG.
+multilingual retrievers for CORA.
 """
 from abc import ABC, abstractmethod
 import copy
@@ -41,6 +41,7 @@ from parlai.utils.torch import padded_tensor
 from parlai.utils.typing import TShared
 from parlai.utils.io import PathManager
 
+from parlai.agents.cora.mdpr import mDprQueryEncoder
 from parlai.agents.cora.dpr import DprQueryEncoder
 from parlai.agents.rag.polyfaiss import RagDropoutPolyWrapper
 from parlai.agents.cora.indexers import DenseHNSWFlatIndexer, indexer_factory
@@ -51,6 +52,9 @@ from parlai.agents.cora.args import (
     POLYENCODER_OPT_KEYS,
     TRANSFORMER_RANKER_BASE_OPT,
     WOW_COMPRESSED_INDEX_PATH,
+    MULTILINGUAL_WIKIPEDIA_COMPRESSED_INDEX,
+    MULTILINGUAL_WIKI_INDEX_PATH,
+    MULTILINGUAL_WIKI_PASSPAGES_PATH,
 )
 from parlai.agents.rag.retrieve_api import SearchEngineRetriever
 
@@ -76,36 +80,22 @@ def load_passage_reader(
     f_open = gzip.open if ctx_file.endswith(".gz") else open
     try:
         passages = {} if return_dict else []
-        with f_open(ctx_file) as tsvfile:
-            _reader = csv.reader(tsvfile, delimiter='\t')  # type: ignore
-            ids = []
-            for idx, row in tqdm(enumerate(_reader)):
-                if idx == 0:
-                    assert row[0] == 'id'
-                    ids.append(-1)
-                elif idx <= 1:
-                    ids.append(row[0])
-                    if return_dict:
-                        passages[row[0]] = (row[1], row[2])  # type: ignore
-                    else:
-                        passages.append((row[0], row[1], row[2]))  # type: ignore
-                    continue
-                else:
-                    assert int(row[0]) == int(ids[idx - 1]) + 1, "invalid load"
-                    if return_dict:
-                        passages[row[0]] = (row[1], row[2])  # type: ignore
-                    else:
-                        passages.append((row[0], row[1], row[2]))  # type: ignore
-                    ids.append(row[0])
+        with f_open(ctx_file, encoding='utf-8') as tsvfile:
+            print("trying to read the file")
+            _reader = csv.reader(tsvfile, delimiter='\t',)  # type: ignore
+            # file format: doc_id, doc_text, title
+            for row in _reader:
+                if row[0] != 'id':
+                    passages[row[0]] = (row[1], row[2])
 
-        del ids
     except (csv.Error, AssertionError) as e:
         passages = {} if return_dict else []
         logging.error(f'Exception: {e}')
         logging.warning('Error in loading csv; loading via readlines')
-        with f_open(ctx_file) as tsvfile:
+        with f_open(ctx_file, encoding='utf-8') as tsvfile:
             for idx, l in tqdm(enumerate(tsvfile.readlines())):
                 line = l.replace('\n', '').split('\t')  # type: ignore
+                print("this is the length of a line ", len(line))
                 assert len(line) == 3
                 if idx == 0:
                     assert line[0] == 'id'
@@ -224,7 +214,7 @@ def clean_vec(
     return new_vec
 
 
-class RagRetrieverTokenizer:
+class mRagRetrieverTokenizer:
     """
     Wrapper for various tokenizers used by RAG Query Model.
     """
@@ -266,12 +256,12 @@ class RagRetrieverTokenizer:
         :param dictionary:
             ParlAI dictionary agent
         """
-        if self.query_model in ['bert', 'bert_from_parlai_rag']:
+        if self.query_model in ['mbert_from_cora', 'bert_from_parlai_rag']:
             try:
-                return BertTokenizer.from_pretrained('bert-base-uncased')
+                return BertTokenizer.from_pretrained('bert-base-multilingual-uncased')
             except (ImportError, OSError):
                 vocab_path = PathManager.get_local_path(
-                    os.path.join(self.datapath, "bert_base_uncased", self.VOCAB_PATH)
+                    os.path.join(self.datapath, "bert-base-multilingual-uncased", self.VOCAB_PATH)
                 )
                 return transformers.BertTokenizer.from_pretrained(vocab_path)
         else:
@@ -281,7 +271,7 @@ class RagRetrieverTokenizer:
         """
         Return pad token idx.
         """
-        if self.query_model in ['bert', 'bert_from_parlai_rag']:
+        if self.query_model in ['mbert_from_cora', 'bert_from_parlai_rag']:
             return self.tokenizer.pad_token_id
         else:
             return self.tokenizer[self.tokenizer.null_token]
@@ -296,7 +286,7 @@ class RagRetrieverTokenizer:
         """
         Return start token idx.
         """
-        if self.query_model in ['bert', 'bert_from_parlai_rag']:
+        if self.query_model in ['mbert_from_cora', 'bert_from_parlai_rag']:
             return self.tokenizer.bos_token_id or 1
         else:
             return self.tokenizer[self.tokenizer.start_token]
@@ -305,7 +295,7 @@ class RagRetrieverTokenizer:
         """
         Return start token idx.
         """
-        if self.query_model in ['bert', 'bert_from_parlai_rag']:
+        if self.query_model in ['mbert_from_cora', 'bert_from_parlai_rag']:
             return self.tokenizer.eos_token_id or 2
         else:
             return self.tokenizer[self.tokenizer.end_token]
@@ -323,7 +313,7 @@ class RagRetrieverTokenizer:
         :return encoding:
             return encoded text.
         """
-        if self.query_model in ['bert', 'bert_from_parlai_rag']:
+        if self.query_model in ['mbert_from_cora', 'bert_from_parlai_rag']:
             txt = txt.lower().strip()
             if txt_pair:
                 txt_pair = txt_pair.lower().strip()
@@ -342,7 +332,7 @@ class RagRetrieverTokenizer:
         """
         Decode a token vector into a string.
         """
-        if self.query_model in ['bert', 'bert_from_parlai_rag']:
+        if self.query_model in ['mbert_from_cora', 'bert_from_parlai_rag']:
             return self.tokenizer.decode(
                 clean_vec(vec, self.get_eos_idx()), skip_special_tokens=True
             )
@@ -360,16 +350,17 @@ class RagRetrieverTokenizer:
             )
 
 
-class RagRetriever(torch.nn.Module, ABC):
+class CoraRetriever(torch.nn.Module, ABC):
     """
-    RAG Retriever.
+    CORA Retriever.
 
-    Provides an interface to the RagModel for retrieving documents.
+    Provides an interface to the Cora Model for retrieving documents.
     """
 
     def __init__(self, opt: Opt, dictionary: DictionaryAgent, shared: TShared = None):
         super().__init__()
         self.retriever_type = RetrieverType(opt['rag_retriever_type'])
+        print(f"Using {opt['rag_retriever_type']} as the retriever.")
         if not (
             (
                 self.retriever_type
@@ -381,16 +372,16 @@ class RagRetriever(torch.nn.Module, ABC):
             or (opt.get('retriever_debug_index') in [None, 'none'])
         ):
             if opt.get('retriever_debug_index') == 'exact':
-                opt['path_to_index'] = WOW_INDEX_PATH
+                opt['path_to_index'] = MULTILINGUAL_WIKIPEDIA_COMPRESSED_INDEX
             else:
-                opt['path_to_index'] = WOW_COMPRESSED_INDEX_PATH
-            opt['path_to_dpr_passages'] = WOW_PASSAGES_PATH
+                opt['path_to_index'] = MULTILINGUAL_WIKIPEDIA_COMPRESSED_INDEX
+            opt['path_to_dpr_passages'] = MULTILINGUAL_WIKI_PASSPAGES_PATH # changed from WOW_PASSAGES_PATH
         self.opt = opt
         self.print_docs = opt.get('print_docs', False)
         self.max_doc_len = opt['max_doc_token_length']
         self.max_query_len = opt['rag_query_truncate'] or 1024
         self.end_idx = dictionary[dictionary.end_token]
-        self._tokenizer = RagRetrieverTokenizer(
+        self._tokenizer = mRagRetrieverTokenizer(
             datapath=opt['datapath'],
             query_model=opt['query_model'],
             dictionary=dictionary,
@@ -452,11 +443,11 @@ class RagRetriever(torch.nn.Module, ABC):
     def vectorize_texts(
         self,
         input_text: List[str],
-        tokenizer: RagRetrieverTokenizer,
+        tokenizer: mRagRetrieverTokenizer,
         max_len: Optional[int] = None,
     ) -> torch.LongTensor:
         """
-        Vectorize a set of input texts with an arbitrary RagRetrieverTokenizer.
+        Vectorize a set of input texts with an arbitrary mRagRetrieverTokenizer.
 
         :param input_text:
             list of input strings
@@ -508,7 +499,7 @@ class RagRetriever(torch.nn.Module, ABC):
         return {}
 
 
-class RagRetrieverReranker(RagRetriever, ABC):
+class mRagRetrieverReranker(CoraRetriever, ABC):
     """
     Trait that carries methods for Reranker-based retrievers.
     """
@@ -592,9 +583,9 @@ class RagRetrieverReranker(RagRetriever, ABC):
         """
 
 
-class DPRRetriever(RagRetriever):
+class DPRRetriever(CoraRetriever):
     """
-    DPR Retriever.
+    mDPR Retriever.
     """
 
     def __init__(self, opt: Opt, dictionary: DictionaryAgent, shared=None):
@@ -609,6 +600,7 @@ class DPRRetriever(RagRetriever):
         )
 
     def load_index(self, opt, shared):
+        logging.info("trying to load index")
         if not shared:
             self.indexer = indexer_factory(opt)
             index_path = modelzoo_path(opt['datapath'], opt['path_to_index'])
@@ -620,6 +612,7 @@ class DPRRetriever(RagRetriever):
                 )
             self.indexer.deserialize_from(index_path, embeddings_path)
             self.passages = load_passages_dict(passages_path)
+            print("done")
         elif shared:
             self.indexer = shared['indexer']
             self.passages = shared['passages']
@@ -652,15 +645,23 @@ class DPRRetriever(RagRetriever):
         # NOTE: important that detach occurs _for retrieval only_, as we use the
         # query encodings to compute scores later in this function; if detached,
         # gradient will not flow to the query encoder.
+        logging.info("using indexer search to get top docs and scores")
         top_docs_and_scores = self.indexer.search(
             query.cpu().detach().to(torch.float32).numpy(), n_docs
         )
+     #   print("this is the ")
         ids, np_vectors = zip(*top_docs_and_scores)
+        print(f"this is the ids: {ids},  this is the np vecs {np_vectors}")
         vectors = torch.tensor(np_vectors).to(query)
+        print("this is the vectors after tensor transformation: ", vectors)
         if isinstance(self.indexer, DenseHNSWFlatIndexer):
+            print("using denseHNSWFlatIndexer...")
             vectors = vectors[:, :, :-1]
+
         # recompute exact FAISS scores
+        logging.info("recomputing the exact FAISS scores")
         scores = torch.bmm(query.unsqueeze(1), vectors.transpose(1, 2)).squeeze(1)
+        print("this is the scores after transpose",scores)
         if torch.isnan(scores).sum().item():
             raise RuntimeError(
                 '\n[ Document scores are NaN; please look into the built index. ]\n'
@@ -669,7 +670,8 @@ class DPRRetriever(RagRetriever):
                 '[ $ python index_dense_embeddings --indexer-type exact... ]'
             )
         ids = torch.tensor([[int(s) for s in ss] for ss in ids])
-
+        print("this is the docs ids:", ids)
+        print("sucessfully retrieved doc index and scores")
         return ids, scores
 
     def retrieve_and_score(
@@ -688,26 +690,27 @@ class DPRRetriever(RagRetriever):
             scores: doc scores
         """
         query_enc = self.query_encoder(query)
+        logging.info("got the query encoder, now doing retrieve and score")
+        
         top_doc_ids_tensor, top_doc_scores = self.index_retrieve(query_enc, self.n_docs)
+        logging.info("finished getting the tensors and scores of the top docs!")
+        logging.info("now get the passages of the top docs!")
         top_docs, top_doc_ids = [], []
         for i in range(query.size(0)):
             ids_i = []
             docs_i = []
             for int_id in top_doc_ids_tensor[i]:
                 doc_id = str(int_id.item())
-                passage = self.passages.get(doc_id, None)
+                passage = self.passages[doc_id]
 
                 ids_i.append(doc_id)
-                if passage is not None:
-                    docs_i.append(Document(title=passage[1], text=passage[0], docid=doc_id))
-                else:
-                    docs_i.append(Document(title=None, text=None, docid=doc_id))
+                docs_i.append(Document(title=passage[1], text=passage[0], docid=doc_id))
             top_docs.append(docs_i)
             top_doc_ids.append(ids_i)
         return top_docs, top_doc_scores
 
 
-class TFIDFRetriever(RagRetriever):
+class TFIDFRetriever(CoraRetriever):
     """
     Use TFIDF to retrieve wikipedia documents.
     """
@@ -794,7 +797,7 @@ class TFIDFRetriever(RagRetriever):
         return docs, scores
 
 
-class DPRThenTorchReranker(RagRetrieverReranker, DPRRetriever, ABC):
+class DPRThenTorchReranker(mRagRetrieverReranker, mDPRRetriever, ABC):
     """
     Base Class for DPR --> TorchRanker Retrievers.
 
@@ -807,12 +810,12 @@ class DPRThenTorchReranker(RagRetrieverReranker, DPRRetriever, ABC):
 
         It is up to subclasses to initialize rerankers.
         """
-        RagRetrieverReranker.__init__(self, opt, dictionary, shared=shared)
+        mRagRetrieverReranker.__init__(self, opt, dictionary, shared=shared)
         self.dpr_num_docs = opt['dpr_num_docs']
         assert self.dpr_num_docs
         dpr_opt = copy.deepcopy(opt)
         dpr_opt['n_docs'] = self.dpr_num_docs
-        DPRRetriever.__init__(self, dpr_opt, dictionary, shared=shared)
+        mDPRRetriever.__init__(self, dpr_opt, dictionary, shared=shared)
 
     def get_reranker_opts(self, opt: Opt) -> Dict[str, Any]:
         """
@@ -836,7 +839,7 @@ class DPRThenTorchReranker(RagRetrieverReranker, DPRRetriever, ABC):
 
     def _build_reranker(
         self, opt: Opt
-    ) -> Tuple[torch.nn.Module, RagRetrieverTokenizer]:
+    ) -> Tuple[torch.nn.Module, mRagRetrieverTokenizer]:
         """
         Builds reranker.
 
@@ -845,7 +848,7 @@ class DPRThenTorchReranker(RagRetrieverReranker, DPRRetriever, ABC):
 
         :return (module, dict)
             module: the model from the agent created via the options
-            dict: A RagRetrieverTokenizer, dictionary for the created model.
+            dict: A mRagRetrieverTokenizer, dictionary for the created model.
         """
         rerank_opt = copy.deepcopy(opt)
         rerank_opt = {**TRANSFORMER_RANKER_BASE_OPT, **self.get_reranker_opts(opt)}
@@ -856,7 +859,7 @@ class DPRThenTorchReranker(RagRetrieverReranker, DPRRetriever, ABC):
 
         return (
             agent.model,
-            RagRetrieverTokenizer(opt['datapath'], '', agent.dict, max_length=360),
+            mRagRetrieverTokenizer(opt['datapath'], '', agent.dict, max_length=360),
         )
 
     def _retrieve_initial(
@@ -876,7 +879,7 @@ class DPRThenTorchReranker(RagRetrieverReranker, DPRRetriever, ABC):
             docs: list of (text, title) tuples for each batch example
             scores: doc scores
         """
-        return DPRRetriever.retrieve_and_score(self, query)
+        return mDPRRetriever.retrieve_and_score(self, query)
 
 
 class DPRThenPolyRetriever(DPRThenTorchReranker):
@@ -993,7 +996,7 @@ class PolyFaissRetriever(DPRThenPolyRetriever):
         self.dropout_poly = RagDropoutPolyWrapper(opt)
         self.polyencoder = self.dropout_poly.model
 
-        self.poly_tokenizer = RagRetrieverTokenizer(
+        self.poly_tokenizer = mRagRetrieverTokenizer(
             opt['datapath'], opt['query_model'], self.dropout_poly.dict, max_length=360
         )
 
@@ -1007,8 +1010,8 @@ class PolyFaissRetriever(DPRThenPolyRetriever):
             param.requires_grad = False
 
 
-@register_agent("rag_tfidf_retriever")
-class RagTfidfRetrieverAgent(TfidfRetrieverAgent):
+@register_agent("mrag_tfidf_retriever")
+class mRagTfidfRetrieverAgent(TfidfRetrieverAgent):
     """
     Wrapper around TFIDF Retriever to cache retrieved documents.
     """
@@ -1041,9 +1044,9 @@ BLANK_SEARCH_DOC = {'url': None, 'content': '', 'title': ''}
 NO_SEARCH_QUERY = 'no_passages_used'
 
 
-class SearchQueryRetriever(RagRetriever):
+class SearchQueryRetriever(CoraRetriever):
     def __init__(self, opt: Opt, dictionary: DictionaryAgent, shared: TShared):
-        RagRetriever.__init__(self, opt, dictionary, shared=shared)
+        CoraRetriever.__init__(self, opt, dictionary, shared=shared)
         opt['skip_retrieval_token'] = NO_SEARCH_QUERY
         self.n_docs = opt['n_docs']
         self.len_chunk = opt['splitted_chunk_length']
@@ -1260,14 +1263,14 @@ class SearchQuerySearchEngineRetriever(SearchQueryRetriever):
         return top_docs, torch.Tensor(top_doc_scores).to(query.device)
 
 
-class SearchQueryFAISSIndexRetriever(SearchQueryRetriever, DPRRetriever):
+class SearchQueryFAISSIndexRetriever(SearchQueryRetriever,mDPRRetriever):
     def __init__(self, opt: Opt, dictionary: DictionaryAgent, shared):
         SearchQueryRetriever.__init__(self, opt, dictionary, shared=shared)
         self.load_index(opt, shared)
 
     def share(self) -> TShared:
         shared = SearchQueryRetriever.share(self)
-        shared.update(DPRRetriever.share(self))
+        shared.update(mDPRRetriever.share(self))
         return shared
 
     def retrieve_and_score(
@@ -1276,7 +1279,7 @@ class SearchQueryFAISSIndexRetriever(SearchQueryRetriever, DPRRetriever):
         """
         Retrieves from the FAISS index using a search query.
 
-        This methods relies on the `retrieve_and_score` method in `RagRetriever`
+        This methods relies on the `retrieve_and_score` method in `CoraRetriever`
         ancestor class. It receive the query (conversation context) and generatess the
         search term queries based on them. Then uses those search quries (instead of the
         the query text itself) to retrieve from the FAISS index.
@@ -1286,7 +1289,7 @@ class SearchQueryFAISSIndexRetriever(SearchQueryRetriever, DPRRetriever):
         tokenized_search_queries, _ = padded_tensor(
             [self._tokenizer.encode(sq) for sq in search_queries]
         )
-        top_docs, top_doc_scores = DPRRetriever.retrieve_and_score(
+        top_docs, top_doc_scores = mDPRRetriever.retrieve_and_score(
             self, tokenized_search_queries.to(query.device)
         )
         for query_id in range(len(top_docs)):
@@ -1295,7 +1298,7 @@ class SearchQueryFAISSIndexRetriever(SearchQueryRetriever, DPRRetriever):
         return top_docs, top_doc_scores
 
 
-class ObservationEchoRetriever(RagRetriever):
+class ObservationEchoRetriever(CoraRetriever):
     """
     This retriever returns (echos) documents that are already passed to it to return.
 
@@ -1446,7 +1449,7 @@ class TfidfChunkRanker(DocumentChunkRanker):
 
 def retriever_factory(
     opt: Opt, dictionary: DictionaryAgent, shared=None
-) -> Optional[RagRetriever]:
+) -> Optional[CoraRetriever]:
     """
     Build retriever.
 
@@ -1464,8 +1467,8 @@ def retriever_factory(
         return None
     # only build retriever when not converting a BART model
     retriever = RetrieverType(opt['rag_retriever_type'])
-    if retriever is RetrieverType.DPR:
-        return DPRRetriever(opt, dictionary, shared=shared)
+    if retriever is RetrieverType.mDPR:
+        return mDPRRetriever(opt, dictionary, shared=shared)
     elif retriever is RetrieverType.TFIDF:
         return TFIDFRetriever(opt, dictionary, shared=shared)
     elif retriever is RetrieverType.DPR_THEN_POLY:

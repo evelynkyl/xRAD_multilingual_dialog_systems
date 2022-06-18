@@ -398,7 +398,7 @@ class CoraAgent(TransformerGeneratorRagAgent, BartRagAgent, T5RagAgent, mGENRagA
         """
         model = self._generation_agent.build_rag_model(self.opt, self.dict)
         if self.opt['embedding_type'] != 'random':
-            self._copy_embeddings(
+            self._copy_embeddings(f
                 model.encoder.embeddings.weight, self.opt['embedding_type']
             )
         return model

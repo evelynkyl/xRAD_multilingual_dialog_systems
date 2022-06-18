@@ -57,12 +57,13 @@ class BertConversionUtils:
         """
 
         try:
-            bert_model = BertModel.from_pretrained('bert-base-uncased')
+            bert_model = BertModel.from_pretrained('bert-base-multilingual-uncased')
         except OSError:
             model_path = PathManager.get_local_path(
-                os.path.join(datapath, "bert_base_uncased")
+                os.path.join(datapath, "bert-base-multilingual-uncased")
             )
             bert_model = BertModel.from_pretrained(model_path)
+          #  bert_model = BertModel.from_pretrained("/root/cora/mDPR_biencoder_best/mDPR_biencoder_best.cpt")
 
         if pretrained_dpr_path:
             BertConversionUtils.load_dpr_model(

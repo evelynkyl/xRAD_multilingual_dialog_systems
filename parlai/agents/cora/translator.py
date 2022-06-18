@@ -12,8 +12,7 @@ def detect_language(input_sent):
     Given a sentence, return the language id of the detected langaug 
     """
     DetectorFactory.seed = 0 # for keeping the result consistent
-    # texts = "العربية" # 'Mitä sinä teet' #"দয়া করে আমাকে জল দিন" # 'この文章は日本語で書かれました。' #"이 문장은 한글로 쓰여졌습니다."
-    detected_language = detect(input_sent) #(opt['input_sentence'])
+    detected_language = detect(input_sent) 
     print(f"Detected {detected_language}!")
     return detected_language 
 
@@ -81,12 +80,6 @@ class MarianTranslatorFromENToTarget(MarianTranslatorFromTargetToEN):
         self.model_name =  None
         self.src_lang = MarianTranslatorFromTargetToEN.src_lang
         self.output_sentence = None
-        
-        # run language detection if language id is not specified "for the input!"
-       # to_en =  MarianTranslatorFromTargetToEN()
-     #   print(f"source lang is {to_en.src_lang}")
-     #   self.src_lang = to_en.src_lang #detect_language(input_sentence)
-
 
         # for translating the generated output from English to the target language
         self.en_to_tgt_dict = {
