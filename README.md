@@ -1,7 +1,7 @@
 
 # Multilingual Knowledge-grounded Dialogue Systems
 
-The implementation of the master's thesis work [Can Wizards be Polyglots: Towards a Multilingual Knowledge-grounded Dialogue System](http://urn.kb.se/resolve?urn=urn:nbn:se:uu:diva-477541). 
+The implementation of the master's thesis work “[Can Wizards be Polyglots: Towards a Multilingual Knowledge-grounded Dialogue System](http://urn.kb.se/resolve?urn=urn:nbn:se:uu:diva-477541)”. 
 
 This thesis invesitgated if and how can we develop a multilingual knowledge-ground dialogue system without in-task data by leveraging various transfer learning techniques, given the lack of multilingual non-task-oriented data. The goal was to explore if cross-task transfer (multilingual question answering to dialogue) or cross-lingual transfer (English to multilingual) could be useful for a non-task-oriented, knowledge-aware dialogie model in a multilingual setting. I focused on five typologically diverse languages, namely Arabic, Bengali, Finnish, Japanese, and Korean, of which well-performing models could generalize to the languages that are part of the language family as the target languages, hence widening the accessibility of the systems to speakers of various languages.
 
