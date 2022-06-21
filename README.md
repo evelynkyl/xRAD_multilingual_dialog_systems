@@ -196,7 +196,7 @@ python3 train_model.py -mf izoo:models/400M_genmdm_seq_exp1/400M_genmdm_seq_exp1
 
 ## [Evaluation](#evaluation)
 ### Automatic evaluation
-It is important to note that quantative evaluation was only performed for English dialogue, given the unavailability of multilingual dialogue datasets for all five of the target languages. It is used as an estimation to the performance of the models; however, since automated metrics are still not quite reliable for evaluating open dialogue tasks, human evaluation is key. In this case, perplexity was used as the automated metric since it was reported to have a stronger correlation to human judgment ([Adiwardana et al., 2020](https://arxiv.org/abs/2001.09977)).
+It is important to note that quantitative evaluation was only performed for English dialogue, given the unavailability of multilingual dialogue datasets for all five of the target languages. It is used as an estimation to the performance of the models; however, since automated metrics are still not quite reliable for evaluating open dialogue tasks, human evaluation is key. In this case, perplexity was used as the automated metric since it was reported to have a stronger correlation to human judgment ([Adiwardana et al., 2020](https://arxiv.org/abs/2001.09977)).
 
 To run automatic evaluations, use the commands below:
 
