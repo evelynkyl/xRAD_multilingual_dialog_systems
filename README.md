@@ -220,7 +220,7 @@ python3 eval.py -mf izoo:models/genmdm_400M/genmdm_400M -t wizard_of_wikipedia \
 
 **Baseline**
 
-To compare the two models, I have set up a Translate-test baseline, which adds a machine translation (MT) component to a pre-trained knowledge-aware open dialogue model ([BlenderBot 400M Distilled, Roller et al., 2021](https://parl.ai/projects/recipes/)). The codes from ParlAI were modified to add the MT component. They can be found in [`parlai/crowdsourcing/tasks/model_chat/bot_agent`] (https://github.com/evelynkyl/xRAD_multilingual_dialog_systems/blob/main/parlai/crowdsourcing/tasks/model_chat/bot_agent.py) and [`parlai/crowdsourcing/tasks/model_chat/world`] (https://github.com/evelynkyl/xRAD_multilingual_dialog_systems/blob/main/parlai/crowdsourcing/tasks/model_chat/worlds.py).
+To compare the two models, I have set up a Translate-test baseline, which adds a machine translation (MT) component to a pre-trained knowledge-aware open dialogue model ([BlenderBot 400M Distilled, Roller et al., 2021](https://parl.ai/projects/recipes/)). The codes from ParlAI were modified to add the MT component. They can be found in [`parlai/crowdsourcing/tasks/model_chat/bot_agent`](https://github.com/evelynkyl/xRAD_multilingual_dialog_systems/blob/main/parlai/crowdsourcing/tasks/model_chat/bot_agent.py) and [`parlai/crowdsourcing/tasks/model_chat/world`](https://github.com/evelynkyl/xRAD_multilingual_dialog_systems/blob/main/parlai/crowdsourcing/tasks/model_chat/worlds.py).
 
 ```bash
 # on English data
