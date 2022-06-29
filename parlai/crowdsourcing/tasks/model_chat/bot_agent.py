@@ -60,19 +60,13 @@ class TranslatorTurkLikeAgent:
 
         logging.info("Initializing Translator...")
         translator = MarianTranslator(new_ob["text"]) #final_message_text)
-       # if detect_language(final_message_text) != 'en':
-      #      print("detected ", detect_language(final_message_text), "do not need to translate answer")
-       #     final_message_text = final_message_text
-     #   else:
+
         from_tgt_translator = MarianTranslatorFromTargetToEN(translator)
         translator_from_en = MarianTranslatorFromENToTarget(from_tgt_translator)
-        logging.info("Initialization complete!")
         logging.info(f"Translating the generated message: {final_message_text} to target language.")
         final_message_text = translator_from_en.translate_answer(final_message_text)
-        logging.info(f"The translate_answer is {final_message_text}.")
         
         if isinstance(final_message_text, list):
-            print("List detected, converting it to string")
             final_message_text = "".join(final_message_text)
             
         act_out['text'] = final_message_text
@@ -103,22 +97,14 @@ class TranslatorTurkLikeAgent:
                 f'{self.__class__.__name__}: In observe() AFTER semaphore, self.turn_idx: {self.turn_idx}, and observation is missing a "text" field: {new_ob}'
             )
         else:            
-            print("this is new_ob[text]: ", new_ob["text"])
-            print("the of new_ob[text]: ", type(new_ob["text"]))
             if new_ob["text"] == "Hi":
                 pass
             else:
-                print("this is the human act: ", new_ob["text"])
                 translator = MarianTranslator(new_ob["text"])
-               # if detect_language(new_ob["text"]) != 'en':
-             #       print("detected ", detect_language(new_ob["text"]), "do not need to translate answer")
-              #      translated_in_message = new_ob["text"]
 
-              #  else:
                 translator_to_en = MarianTranslatorFromTargetToEN(translator)
                 logging.info("Translating the incoming message from target language to English.")
                 translated_in_message = translator_to_en.translate_question(new_ob["text"])
-                logging.info(f"The translate_answer is {translated_in_message}.")
             
             logging.info(
                 f'{self.__class__.__name__}: In observe() AFTER semaphore, self.turn_idx: {self.turn_idx}, observation["text"]: {translated_in_message}'
